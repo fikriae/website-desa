@@ -31,6 +31,9 @@ class AuthController extends Controller
             if (!in_array($user->role, ['admin', 'editor'])) {
                 Auth::logout();
 
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
                 return back()->withErrors([
                     'email' => 'Akun tidak memiliki hak akses.',
                 ])->onlyInput('email');
@@ -51,6 +54,7 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('login')
+            ->with('success', 'Anda berhasil logout.');
     }
 }

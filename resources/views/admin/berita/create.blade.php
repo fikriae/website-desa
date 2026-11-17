@@ -7,116 +7,323 @@
 
 <style>
     .news-form {
+        width: 100%;
         max-width: 1000px;
-        margin: auto;
+        margin: 0 auto;
+    }
+
+    .news-form-heading {
+        margin-bottom: 24px;
+    }
+
+    .news-form-heading h2 {
+        margin: 0 0 7px;
+        color: #1e293b;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .news-form-heading p {
+        margin: 0;
+        color: #64748b;
+        font-size: 14px;
+        line-height: 1.6;
     }
 
     .form-card {
-        background: white;
+        background: #fff;
         padding: 25px;
-        border-radius: 12px;
+        border: 1px solid #e5e7eb;
+        border-radius: 13px;
         margin-bottom: 20px;
-        box-shadow: 0 2px 8px rgba(0,0,0,.04);
+        box-shadow: 0 3px 12px rgba(15, 23, 42, .035);
+    }
+
+    .form-card h3 {
+        margin: 0 0 9px;
+        color: #1e293b;
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .form-description {
+        color: #64748b;
+        font-size: 13px;
+        line-height: 1.7;
+        margin: 0 0 18px;
     }
 
     .form-group {
         margin-bottom: 20px;
     }
 
+    .form-group:last-child {
+        margin-bottom: 0;
+    }
+
     .form-group label {
         display: block;
-        font-weight: 600;
+        color: #334155;
+        font-size: 13px;
+        font-weight: 700;
         margin-bottom: 8px;
     }
 
+    .required-mark {
+        color: #dc2626;
+    }
+
     .form-control {
+        display: block;
         width: 100%;
         padding: 11px 13px;
         border: 1px solid #cbd5e1;
         border-radius: 8px;
         font-size: 14px;
-        background: white;
+        color: #334155;
+        background: #fff;
+        transition: .2s;
+        box-sizing: border-box;
     }
 
     .form-control:focus {
         outline: none;
-        border-color: #2563eb;
+        border-color: #1e462e;
+        box-shadow: 0 0 0 3px rgba(30, 70, 46, .09);
+    }
+
+    textarea.form-control {
+        resize: vertical;
+        min-height: 95px;
+        line-height: 1.6;
+    }
+
+    select.form-control {
+        cursor: pointer;
     }
 
     .editor-wrapper {
         border: 1px solid #cbd5e1;
-        border-radius: 8px;
+        border-radius: 9px;
         overflow: hidden;
+        background: #fff;
+    }
+
+    #toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3px;
+        padding: 9px;
+        background: #f8fafc;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    #toolbar .ql-formats {
+        margin-right: 5px;
+        margin-bottom: 3px;
     }
 
     #editor {
         min-height: 350px;
-        background: white;
+        background: #fff;
     }
 
     #editor .ql-editor {
         min-height: 350px;
+        padding: 18px;
         font-size: 15px;
         line-height: 1.8;
+        overflow-wrap: anywhere;
     }
 
     #editor .ql-editor img {
         max-width: 100%;
         height: auto;
+        border-radius: 6px;
+    }
+
+    #editor .ql-editor.ql-blank::before {
+        color: #94a3b8;
+        font-style: normal;
+    }
+
+    .ql-toolbar.ql-snow {
+        border: none;
+    }
+
+    .ql-container.ql-snow {
+        border: none;
+        font-family: inherit;
     }
 
     .image-preview {
-        max-width: 300px;
-        max-height: 200px;
         display: none;
-        margin-top: 12px;
-        border-radius: 8px;
-        object-fit: cover;
+        max-width: 100%;
+        width: auto;
+        max-height: 220px;
+        margin-top: 13px;
+        border-radius: 9px;
+        border: 1px solid #e2e8f0;
+        object-fit: contain;
     }
 
-    .form-error {
-        color: #dc2626;
+    .editor-info {
+        display: block;
+        color: #64748b;
+        font-size: 12px;
+        line-height: 1.7;
+        margin-top: 9px;
+    }
+
+    #uploadStatus {
+        min-height: 18px;
+    }
+
+    .news-form-alert {
+        padding: 15px 17px;
+        border-radius: 9px;
+        margin-bottom: 20px;
         font-size: 13px;
-        margin-top: 6px;
+        line-height: 1.7;
+    }
+
+    .news-form-alert-error {
+        background: #fee2e2;
+        color: #991b1b;
+        border: 1px solid #fecaca;
+    }
+
+    .news-form-alert-error ul {
+        margin: 7px 0 0;
+        padding-left: 20px;
     }
 
     .form-actions {
         display: flex;
         justify-content: space-between;
-        gap: 10px;
+        align-items: center;
+        gap: 12px;
         flex-wrap: wrap;
+        padding-top: 5px;
     }
 
-    .btn-secondary {
-        background: #e2e8f0;
+    .btn-form {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        padding: 10px 18px;
+        border: none;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: .2s;
+    }
+
+    .btn-form-back {
+        background: #f1f5f9;
         color: #334155;
     }
 
-    .btn-success {
-        background: #15803d;
-        color: white;
+    .btn-form-back:hover {
+        background: #e2e8f0;
+        color: #1e293b;
     }
 
-    .editor-info {
-        color: #64748b;
-        font-size: 13px;
-        margin-top: 10px;
+    .btn-form-submit {
+        background: #1e462e;
+        color: #fff;
+    }
+
+    .btn-form-submit:hover {
+        background: #163723;
+    }
+
+    .btn-form-submit:disabled {
+        opacity: .65;
+        cursor: not-allowed;
+    }
+
+    @media (max-width: 768px) {
+        .news-form-heading h2 {
+            font-size: 22px;
+        }
+
+        .form-card {
+            padding: 19px;
+        }
+
+        #editor,
+        #editor .ql-editor {
+            min-height: 300px;
+        }
+
+        #toolbar {
+            padding: 7px;
+        }
+
+        .form-actions {
+            flex-direction: column-reverse;
+            align-items: stretch;
+        }
+
+        .btn-form {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .news-form-heading h2 {
+            font-size: 20px;
+        }
+
+        .news-form-heading p {
+            font-size: 13px;
+        }
+
+        .form-card {
+            padding: 14px;
+            border-radius: 10px;
+        }
+
+        .form-card h3 {
+            font-size: 16px;
+        }
+
+        .form-control {
+            font-size: 13px;
+        }
+
+        #editor,
+        #editor .ql-editor {
+            min-height: 260px;
+        }
+
+        #editor .ql-editor {
+            padding: 13px;
+            font-size: 14px;
+        }
+
+        #toolbar .ql-formats {
+            margin-right: 2px;
+        }
     }
 </style>
 
 <div class="news-form">
 
-    <div style="margin-bottom:25px;">
-        <h2 style="margin-bottom:8px;">Tambah Berita</h2>
-        <p style="color:#64748b; margin:0;">
-            Buat berita dan informasi terbaru Desa Manyar.
-        </p>
+    <div class="news-form-heading">
+        <h2>Tambah Berita</h2>
+        <p>Buat berita dan informasi terbaru Desa Manyar.</p>
     </div>
 
     @if ($errors->any())
-        <div style="background:#fee2e2; color:#991b1b; padding:15px; border-radius:8px; margin-bottom:20px;">
+        <div class="news-form-alert news-form-alert-error">
             <strong>Periksa kembali data berikut:</strong>
-            <ul style="margin-bottom:0;">
+
+            <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
@@ -132,10 +339,13 @@
     >
         @csrf
 
+        {{-- INFORMASI BERITA --}}
         <div class="form-card">
 
             <div class="form-group">
-                <label for="title">Judul Berita *</label>
+                <label for="title">
+                    Judul Berita <span class="required-mark">*</span>
+                </label>
 
                 <input
                     type="text"
@@ -179,6 +389,10 @@
                     rows="3"
                     placeholder="Tuliskan ringkasan singkat berita..."
                 >{{ old('excerpt') }}</textarea>
+
+                <small class="editor-info">
+                    Tuliskan ringkasan singkat agar pembaca mengetahui isi berita.
+                </small>
             </div>
 
             <div class="form-group">
@@ -205,17 +419,21 @@
 
         </div>
 
+        {{-- ISI BERITA --}}
         <div class="form-card">
 
-            <h3 style="margin-top:0;">Isi Berita</h3>
+            <h3>Isi Berita</h3>
 
-            <p style="color:#64748b; font-size:14px;">
+            <p class="form-description">
                 Tulis berita seperti menggunakan Microsoft Word.
-                Gunakan tombol gambar untuk menyisipkan foto di antara paragraf.
+                Gunakan toolbar untuk mengatur tulisan, membuat daftar,
+                menambahkan tautan, dan menyisipkan foto di antara paragraf.
             </p>
 
             <div class="editor-wrapper">
+
                 <div id="toolbar">
+
                     <span class="ql-formats">
                         <select class="ql-header">
                             <option value="1">Judul 1</option>
@@ -225,32 +443,34 @@
                     </span>
 
                     <span class="ql-formats">
-                        <button class="ql-bold"></button>
-                        <button class="ql-italic"></button>
-                        <button class="ql-underline"></button>
-                        <button class="ql-strike"></button>
+                        <button type="button" class="ql-bold"></button>
+                        <button type="button" class="ql-italic"></button>
+                        <button type="button" class="ql-underline"></button>
+                        <button type="button" class="ql-strike"></button>
                     </span>
 
                     <span class="ql-formats">
-                        <button class="ql-list" value="ordered"></button>
-                        <button class="ql-list" value="bullet"></button>
-                        <button class="ql-blockquote"></button>
+                        <button type="button" class="ql-list" value="ordered"></button>
+                        <button type="button" class="ql-list" value="bullet"></button>
+                        <button type="button" class="ql-blockquote"></button>
                     </span>
 
                     <span class="ql-formats">
-                        <button class="ql-align" value=""></button>
-                        <button class="ql-align" value="center"></button>
-                        <button class="ql-align" value="right"></button>
+                        <button type="button" class="ql-align" value=""></button>
+                        <button type="button" class="ql-align" value="center"></button>
+                        <button type="button" class="ql-align" value="right"></button>
                     </span>
 
                     <span class="ql-formats">
-                        <button class="ql-link"></button>
-                        <button class="ql-image"></button>
-                        <button class="ql-clean"></button>
+                        <button type="button" class="ql-link"></button>
+                        <button type="button" class="ql-image"></button>
+                        <button type="button" class="ql-clean"></button>
                     </span>
+
                 </div>
 
                 <div id="editor"></div>
+
             </div>
 
             <input
@@ -260,15 +480,16 @@
                 value="{{ old('content') }}"
             >
 
-            <div class="editor-info">
+            <small class="editor-info">
                 Gambar yang disisipkan akan diunggah ke server dan disimpan
                 dalam folder storage berita.
-            </div>
+            </small>
 
-            <div id="uploadStatus" class="editor-info"></div>
+            <div id="uploadStatus" class="editor-info" aria-live="polite"></div>
 
         </div>
 
+        {{-- PUBLIKASI --}}
         <div class="form-card">
 
             <div class="form-group">
@@ -289,16 +510,27 @@
                         Terbitkan
                     </option>
                 </select>
+
+                <small class="editor-info">
+                    Pilih Draft untuk menyimpan berita tanpa menampilkannya
+                    kepada pengunjung. Pilih Terbitkan untuk menampilkan berita.
+                </small>
             </div>
 
             <div class="form-actions">
-                <a href="{{ route('admin.news.index') }}" class="btn btn-secondary">
+
+                <a href="{{ route('admin.news.index') }}" class="btn-form btn-form-back">
                     Kembali
                 </a>
 
-                <button type="submit" class="btn btn-primary" id="submitButton">
+                <button
+                    type="submit"
+                    class="btn-form btn-form-submit"
+                    id="submitButton"
+                >
                     Simpan Berita
                 </button>
+
             </div>
 
         </div>
@@ -364,6 +596,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
+            if (!file.type.match(/^image\/(jpeg|png|webp)$/)) {
+                alert('Format gambar harus JPG, PNG, atau WEBP.');
+                return;
+            }
+
             const formData = new FormData();
             formData.append('image', file);
 
@@ -388,7 +625,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const result = await response.json();
 
-                if (!response.ok || !result.success) {
+                if (!response.ok || !result.success || !result.url) {
                     throw new Error(
                         result.message || 'Gagal mengunggah gambar.'
                     );
@@ -427,11 +664,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (!file) {
                 preview.style.display = 'none';
+                preview.removeAttribute('src');
                 return;
             }
 
-            if (!file.type.startsWith('image/')) {
-                alert('File harus berupa gambar.');
+            if (!file.type.match(/^image\/(jpeg|png|webp)$/)) {
+                alert('Format gambar harus JPG, PNG, atau WEBP.');
+                event.target.value = '';
+                preview.style.display = 'none';
+                return;
+            }
+
+            if (file.size > 2 * 1024 * 1024) {
+                alert('Ukuran gambar sampul maksimal 2 MB.');
                 event.target.value = '';
                 preview.style.display = 'none';
                 return;
@@ -450,6 +695,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!quill.getText().trim()) {
             event.preventDefault();
             alert('Isi berita tidak boleh kosong.');
+            quill.focus();
             return;
         }
 

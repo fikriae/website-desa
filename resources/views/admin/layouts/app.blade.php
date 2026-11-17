@@ -7,231 +7,226 @@
 
     <title>@yield('title', 'Admin Desa Manyar')</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
         :root {
-            --primary: #1e40af;
-            --primary-light: #eff6ff;
-            --dark: #172554;
-            --text: #334155;
-            --muted: #64748b;
-            --border: #e2e8f0;
-            --background: #f5f7fb;
-            --header-height: 72px;
+            --primary: #1e462e;
+            --primary-light: #eaf2ed;
             --sidebar-width: 250px;
+            --header-height: 76px;
         }
 
         body {
-            margin: 0;
-            font-family: Inter, "Segoe UI", Arial, sans-serif;
-            background: var(--background);
-            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fb;
+            color: #1e293b;
         }
 
         /* HEADER */
-        .navbar {
+        .admin-header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             height: var(--header-height);
-            z-index: 1000;
-            background: white;
-            border-bottom: 1px solid var(--border);
+            background: #fff;
+            border-bottom: 1px solid #e5e7eb;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 30px;
+            padding: 0 28px;
+            z-index: 1000;
         }
 
-        .brand {
+        .header-brand {
             display: flex;
             align-items: center;
             gap: 12px;
+            text-decoration: none;
+            color: var(--primary);
         }
 
-        .brand-logo {
-            width: 42px;
-            height: 42px;
-            border-radius: 11px;
-            background: var(--primary);
-            color: white;
+        .header-brand img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .header-brand-text {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 18px;
-            font-weight: 800;
+            flex-direction: column;
+            gap: 3px;
         }
 
-        .brand-name {
-            font-size: 17px;
+        .header-brand-text strong {
+            font-size: 16px;
             font-weight: 800;
-            color: var(--dark);
             letter-spacing: .5px;
         }
 
-        .brand-caption {
+        .header-brand-text span {
             font-size: 11px;
-            color: var(--muted);
-            margin-top: 3px;
+            color: #64748b;
         }
 
-        .header-user {
+        .header-right {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
         }
 
-        .user-avatar {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
+        .admin-user {
+            font-size: 13px;
+            color: #475569;
+            font-weight: 600;
+        }
+
+        .mobile-toggle {
+            display: none;
+            border: none;
             background: var(--primary-light);
             color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-        }
-
-        .user-name {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--dark);
-        }
-
-        .user-role {
-            font-size: 11px;
-            color: var(--muted);
-            margin-top: 3px;
+            padding: 9px 12px;
+            border-radius: 8px;
+            font-size: 20px;
+            cursor: pointer;
         }
 
         /* SIDEBAR */
-        .sidebar {
+        .admin-sidebar {
             position: fixed;
             top: var(--header-height);
             left: 0;
             bottom: 0;
             width: var(--sidebar-width);
-            background: white;
-            border-right: 1px solid var(--border);
-            padding: 25px 16px;
+            background: #fff;
+            border-right: 1px solid #e5e7eb;
+            padding: 22px 15px;
             overflow-y: auto;
             z-index: 900;
         }
 
         .sidebar-label {
+            padding: 10px 13px;
             font-size: 10px;
             font-weight: 800;
             color: #94a3b8;
-            letter-spacing: 1.2px;
-            padding: 0 12px;
-            margin: 10px 0 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        .sidebar a {
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .sidebar-menu a {
             display: flex;
             align-items: center;
             gap: 12px;
             padding: 12px 14px;
-            margin-bottom: 5px;
-            border-radius: 9px;
-            text-decoration: none;
             color: #64748b;
             font-size: 13px;
             font-weight: 600;
+            text-decoration: none;
+            border-radius: 9px;
             transition: .2s;
         }
 
-        .sidebar a:hover,
-        .sidebar a.active {
-            background: var(--primary-light);
+        .sidebar-menu a:hover {
+            background: #f1f5f9;
             color: var(--primary);
         }
 
-        .sidebar-icon {
+        .sidebar-menu a.active {
+            background: var(--primary-light);
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .menu-icon {
             width: 20px;
             text-align: center;
             font-size: 17px;
         }
 
         .sidebar-bottom {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border);
+            margin-top: 25px;
+            padding-top: 18px;
+            border-top: 1px solid #edf0f2;
         }
 
         .logout-button {
             width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 12px;
             padding: 12px 14px;
-            border: 0;
-            border-radius: 9px;
-            background: #fff1f2;
-            color: #e11d48;
+            border: none;
+            background: transparent;
+            color: #dc2626;
+            font-family: inherit;
             font-size: 13px;
-            font-weight: 700;
+            font-weight: 600;
+            border-radius: 9px;
             cursor: pointer;
             text-align: left;
         }
 
         .logout-button:hover {
-            background: #ffe4e6;
+            background: #fef2f2;
         }
 
         /* MAIN CONTENT */
-        .main {
+        .admin-main {
             margin-left: var(--sidebar-width);
-            padding: calc(var(--header-height) + 30px) 30px 35px;
+            padding: calc(var(--header-height) + 28px) 28px 35px;
             min-height: 100vh;
         }
 
         .container {
             width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
+        /* COMPONENT UMUM */
         .card {
-            background: white;
-            border: 1px solid var(--border);
+            background: #fff;
+            border: 1px solid #e5e7eb;
             border-radius: 13px;
             padding: 22px;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, .03);
         }
 
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
             padding: 10px 16px;
             border: none;
             border-radius: 8px;
-            cursor: pointer;
+            background: var(--primary);
+            color: #fff;
             text-decoration: none;
+            font-family: inherit;
             font-size: 13px;
             font-weight: 600;
+            cursor: pointer;
         }
 
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #1d4ed8;
-        }
-
-        .btn-warning {
-            background: #fef3c7;
-            color: #92400e;
-        }
-
-        .btn-danger {
-            background: #fee2e2;
-            color: #b91c1c;
-        }
-
-        .btn-secondary {
-            background: #e2e8f0;
-            color: #334155;
+        .btn:hover {
+            opacity: .9;
         }
 
         .table {
@@ -241,8 +236,8 @@
 
         .table th,
         .table td {
-            padding: 14px;
-            border-bottom: 1px solid var(--border);
+            padding: 13px 15px;
+            border-bottom: 1px solid #edf0f2;
             text-align: left;
             font-size: 13px;
         }
@@ -253,86 +248,79 @@
             font-weight: 700;
         }
 
-        .table-responsive {
-            overflow-x: auto;
-        }
-
         .alert {
             padding: 13px 16px;
-            border-radius: 9px;
+            border-radius: 8px;
             margin-bottom: 18px;
-            background: #dcfce7;
-            color: #166534;
+            font-size: 13px;
+        }
+
+        .alert-success {
+            background: #ecfdf5;
+            color: #047857;
+        }
+
+        .alert-danger {
+            background: #fef2f2;
+            color: #b91c1c;
+        }
+
+        /* MOBILE */
+        .sidebar-overlay {
+            display: none;
         }
 
         @media (max-width: 768px) {
-            :root {
-                --header-height: 64px;
-            }
-
-            .navbar {
+            .admin-header {
                 padding: 0 16px;
             }
 
-            .brand-name {
-                font-size: 14px;
+            .header-brand img {
+                width: 40px;
+                height: 40px;
             }
 
-            .sidebar {
-                position: fixed;
-                top: var(--header-height);
-                bottom: 0;
-                width: 72px;
-                padding: 15px 9px;
+            .header-brand-text strong {
+                font-size: 13px;
             }
 
-            .sidebar-label,
-            .sidebar-text,
-            .logout-text {
+            .header-brand-text span {
+                font-size: 10px;
+            }
+
+            .admin-user {
                 display: none;
             }
 
-            .sidebar a {
-                justify-content: center;
-                padding: 13px 5px;
+            .mobile-toggle {
+                display: block;
             }
 
-            .sidebar-icon {
-                font-size: 19px;
+            .admin-sidebar {
+                transform: translateX(-100%);
+                transition: transform .25s ease;
+                width: 260px;
             }
 
-            .logout-button {
-                text-align: center;
-                padding: 13px 5px;
+            .admin-sidebar.show {
+                transform: translateX(0);
             }
 
-            .main {
-                margin-left: 72px;
-                padding: calc(var(--header-height) + 20px) 14px 25px;
+            .sidebar-overlay.show {
+                display: block;
+                position: fixed;
+                inset: var(--header-height) 0 0;
+                background: rgba(15, 23, 42, .4);
+                z-index: 850;
             }
 
-            .user-name {
-                font-size: 11px;
+            .admin-main {
+                margin-left: 0;
+                padding: calc(var(--header-height) + 20px) 15px 25px;
             }
 
-            .user-role {
-                font-size: 10px;
-            }
-        }
-
-        @media (max-width: 420px) {
-            .header-user {
-                gap: 7px;
-            }
-
-            .user-avatar {
-                width: 32px;
-                height: 32px;
-            }
-
-            .brand-logo {
-                width: 36px;
-                height: 36px;
+            .card {
+                padding: 16px;
             }
         }
     </style>
@@ -342,99 +330,144 @@
 
 <body>
 
-    {{-- HEADER --}}
-    <header class="navbar">
+    <!-- HEADER -->
+    <header class="admin-header">
 
-        <div class="brand">
-            <div class="brand-logo">M</div>
+        <a href="{{ route('admin.dashboard') }}" class="header-brand">
 
-            <div>
-                <div class="brand-name">DESA MANYAR</div>
-                <div class="brand-caption">Sistem Informasi Desa</div>
-            </div>
-        </div>
+            <img src="{{ asset('images/logo.jpeg') }}" alt="Logo Desa Manyar">
 
-        <div class="header-user">
-            <div class="user-avatar">
-                {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+            <div class="header-brand-text">
+                <strong>DESA MANYAR</strong>
+                <span>Panel Administrasi Desa</span>
             </div>
 
-            <div>
-                <div class="user-name">
-                    {{ auth()->user()->name }}
-                </div>
+        </a>
 
-                <div class="user-role">
-                    {{ ucfirst(auth()->user()->role) }}
-                </div>
-            </div>
+        <div class="header-right">
+
+            <span class="admin-user">
+                {{ auth()->user()->name ?? 'Administrator' }}
+            </span>
+
+            <button type="button" class="mobile-toggle" id="mobileToggle">
+                ☰
+            </button>
+
         </div>
 
     </header>
 
-    {{-- SIDEBAR --}}
-    <aside class="sidebar">
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar" id="adminSidebar">
 
-        <div class="sidebar-label">MENU UTAMA</div>
+        <div class="sidebar-label">Menu Utama</div>
 
-        <a href="{{ route('admin.dashboard') }}"
-           class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-            <span class="sidebar-icon">▦</span>
-            <span class="sidebar-text">Dashboard</span>
-        </a>
+        <nav class="sidebar-menu">
 
-        <a href="{{ route('admin.news.index') }}"
-           class="{{ request()->routeIs('admin.news.*') ? 'active' : '' }}">
-            <span class="sidebar-icon">▤</span>
-            <span class="sidebar-text">Berita Desa</span>
-        </a>
+            <a href="{{ route('admin.dashboard') }}"
+               class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                <span class="menu-icon">⌂</span>
+                <span>Dashboard</span>
+            </a>
 
-        <a href="#">
-            <span class="sidebar-icon">▣</span>
-            <span class="sidebar-text">Pengumuman</span>
-        </a>
+            <a href="{{ route('admin.news.index') }}"
+               class="{{ request()->routeIs('admin.news.*') ? 'active' : '' }}">
+                <span class="menu-icon">▤</span>
+                <span>Berita Desa</span>
+            </a>
 
-        <a href="#">
-            <span class="sidebar-icon">▦</span>
-            <span class="sidebar-text">Agenda Kegiatan</span>
-        </a>
+            <a href="{{ route('admin.announcements.index') }}"
+               class="{{ request()->routeIs('admin.announcements.*') ? 'active' : '' }}">
+                <span class="menu-icon">◉</span>
+                <span>Pengumuman</span>
+            </a>
 
-        <a href="#">
-            <span class="sidebar-icon">▧</span>
-            <span class="sidebar-text">Galeri Desa</span>
-        </a>
+            <a href="{{ route('admin.agendas.index') }}"
+               class="{{ request()->routeIs('admin.agendas.*') ? 'active' : '' }}">
+                <span class="menu-icon">▦</span>
+                <span>Agenda Kegiatan</span>
+            </a>
 
-        <a href="#">
-            <span class="sidebar-icon">▤</span>
-            <span class="sidebar-text">Layanan Surat</span>
-        </a>
+            <a href="{{ route('admin.galleries.index') }}"
+               class="{{ request()->routeIs('admin.galleries.*') ? 'active' : '' }}">
+                <span class="menu-icon">▧</span>
+                <span>Galeri Desa</span>
+            </a>
 
-        <div class="sidebar-label" style="margin-top:30px;">
-            WEBSITE
-        </div>
+            <a href="{{ route('admin.documents.index') }}"
+               class="{{ request()->routeIs('admin.documents.*') ? 'active' : '' }}">
+                <span class="menu-icon">▣</span>
+                <span>Layanan Surat</span>
+            </a>
 
-        <a href="{{ route('home') }}" target="_blank">
-            <span class="sidebar-icon">◎</span>
-            <span class="sidebar-text">Lihat Website</span>
-        </a>
+        </nav>
+
+        <div class="sidebar-label">Lainnya</div>
+
+        <nav class="sidebar-menu">
+
+            <a href="{{ route('home') }}" target="_blank" rel="noopener noreferrer">
+                <span class="menu-icon">↗</span>
+                <span>Website Publik</span>
+            </a>
+
+        </nav>
 
         <div class="sidebar-bottom">
+
             <form action="{{ route('admin.logout') }}" method="POST">
                 @csrf
 
                 <button type="submit" class="logout-button">
-                    <span class="sidebar-icon">↪</span>
-                    <span class="logout-text">Keluar</span>
+                    <span class="menu-icon">⇥</span>
+                    <span>Keluar</span>
                 </button>
             </form>
+
         </div>
 
     </aside>
 
-    {{-- KONTEN --}}
-    <main class="main">
-        @yield('content')
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- KONTEN HALAMAN -->
+    <main class="admin-main">
+
+        <div class="container">
+
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+
+            @yield('content')
+
+        </div>
+
     </main>
+
+    <!-- SCRIPT SIDEBAR MOBILE -->
+    <script>
+        const mobileToggle = document.getElementById('mobileToggle');
+        const adminSidebar = document.getElementById('adminSidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        function toggleSidebar() {
+            adminSidebar.classList.toggle('show');
+            sidebarOverlay.classList.toggle('show');
+        }
+
+        mobileToggle.addEventListener('click', toggleSidebar);
+        sidebarOverlay.addEventListener('click', toggleSidebar);
+    </script>
 
     @stack('scripts')
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 // ADMIN CONTROLLERS
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\Admin\AgendaController;
 use App\Http\Controllers\Admin\GalleryController;
@@ -101,6 +102,10 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     // --------------------------------------------------
     // BERITA DESA
     // --------------------------------------------------
+
+    // Tambah kategori berita
+    Route::post('/categories', [CategoryController::class, 'store'])
+        ->name('categories.store');
 
     Route::post('/news/upload-image', [NewsController::class, 'uploadImage'])
         ->name('news.upload-image');

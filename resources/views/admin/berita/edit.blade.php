@@ -129,7 +129,94 @@
         padding-left: 20px;
     }
 
-    /* Editor Quill */
+    /* KATEGORI */
+    .category-select-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .btn-add-category {
+        width: 43px;
+        min-width: 43px;
+        height: 43px;
+        border: none;
+        border-radius: 8px;
+        background: #1e462e;
+        color: #fff;
+        font-size: 25px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: .2s;
+    }
+
+    .btn-add-category:hover {
+        background: #163723;
+    }
+
+    /* MODAL KATEGORI */
+    .category-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(15, 23, 42, .55);
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .category-modal.show {
+        display: flex;
+    }
+
+    .category-modal-content {
+        width: 100%;
+        max-width: 420px;
+        background: #fff;
+        border-radius: 13px;
+        padding: 24px;
+        box-shadow: 0 15px 45px rgba(0, 0, 0, .18);
+    }
+
+    .category-modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .category-modal-header h3 {
+        margin: 0;
+        color: #1e293b;
+        font-size: 18px;
+    }
+
+    .category-modal-close {
+        border: none;
+        background: transparent;
+        color: #64748b;
+        font-size: 25px;
+        cursor: pointer;
+    }
+
+    .category-modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 9px;
+        margin-top: 20px;
+    }
+
+    .category-message {
+        display: none;
+        font-size: 13px;
+        margin-top: 10px;
+        line-height: 1.5;
+    }
+
+    /* EDITOR QUILL */
     .editor-wrapper {
         border: 1px solid #cbd5e1;
         border-radius: 9px;
@@ -184,7 +271,7 @@
         font-family: inherit;
     }
 
-    /* Preview gambar */
+    /* PREVIEW GAMBAR */
     .image-preview {
         display: none;
         width: fit-content;
@@ -223,7 +310,7 @@
         min-height: 18px;
     }
 
-    /* Tombol */
+    /* TOMBOL */
     .form-actions {
         display: flex;
         justify-content: space-between;
@@ -394,27 +481,40 @@
                 @enderror
             </div>
 
+            {{-- KATEGORI BERITA --}}
             <div class="form-group">
                 <label for="category_id" class="form-label">
                     Kategori Berita
                 </label>
 
-                <select
-                    name="category_id"
-                    id="category_id"
-                    class="form-control"
-                >
-                    <option value="">Pilih kategori</option>
+                <div class="category-select-wrapper">
+                    <select
+                        name="category_id"
+                        id="category_id"
+                        class="form-control"
+                        style="flex: 1;"
+                    >
+                        <option value="">Pilih kategori</option>
 
-                    @foreach ($categories as $category)
-                        <option
-                            value="{{ $category->id }}"
-                            {{ (string) old('category_id', $news->category_id) === (string) $category->id ? 'selected' : '' }}
-                        >
-                            {{ $category->name }}
-                        </option>
-                    @endforeach
-                </select>
+                        @foreach ($categories as $category)
+                            <option
+                                value="{{ $category->id }}"
+                                {{ (string) old('category_id', $news->category_id) === (string) $category->id ? 'selected' : '' }}
+                            >
+                                {{ $category->name }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    <button
+                        type="button"
+                        class="btn-add-category"
+                        id="openCategoryModal"
+                        title="Tambah kategori"
+                    >
+                        +
+                    </button>
+                </div>
 
                 @error('category_id')
                     <div class="error-message">{{ $message }}</div>
@@ -618,6 +718,72 @@
 
 </div>
 
+{{-- MODAL TAMBAH KATEGORI --}}
+<div class="category-modal" id="categoryModal">
+
+    <div class="category-modal-content">
+
+        <div class="category-modal-header">
+            <h3>Tambah Kategori Berita</h3>
+
+            <button
+                type="button"
+                class="category-modal-close"
+                id="closeCategoryModal"
+            >
+                &times;
+            </button>
+        </div>
+
+        <form id="categoryForm">
+
+            <div class="form-group">
+                <label for="newCategoryName" class="form-label">
+                    Nama Kategori
+                </label>
+
+                <input
+                    type="text"
+                    id="newCategoryName"
+                    class="form-control"
+                    placeholder="Contoh: Kegiatan Desa"
+                    maxlength="100"
+                    required
+                >
+            </div>
+
+            <div
+                id="categoryMessage"
+                class="category-message"
+                role="alert"
+            ></div>
+
+            <div class="category-modal-actions">
+
+                <button
+                    type="button"
+                    class="btn-form btn-form-back"
+                    id="cancelCategory"
+                >
+                    Batal
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn-form btn-form-submit"
+                    id="saveCategoryButton"
+                >
+                    Simpan Kategori
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
 @endsection
 
 @push('scripts')
@@ -631,6 +797,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const submitButton = document.getElementById('submitButton');
     const uploadStatus = document.getElementById('uploadStatus');
 
+    const categoryModal = document.getElementById('categoryModal');
+    const categoryForm = document.getElementById('categoryForm');
+    const categorySelect = document.getElementById('category_id');
+    const categoryMessage = document.getElementById('categoryMessage');
+    const saveCategoryButton = document.getElementById('saveCategoryButton');
+
+    // EDITOR QUILL
     const quill = new Quill('#editor', {
         theme: 'snow',
         placeholder: 'Tuliskan isi berita Desa Manyar di sini...',
@@ -654,7 +827,118 @@ document.addEventListener('DOMContentLoaded', function () {
         quill.root.innerHTML = savedContent;
     }
 
-    // Memilih dan mengunggah gambar ke server.
+    // MODAL TAMBAH KATEGORI
+    function openCategoryModal() {
+        categoryModal.classList.add('show');
+        categoryMessage.style.display = 'none';
+        document.getElementById('newCategoryName').focus();
+    }
+
+    function closeCategoryModal() {
+        categoryModal.classList.remove('show');
+        categoryForm.reset();
+        categoryMessage.style.display = 'none';
+    }
+
+    document.getElementById('openCategoryModal')
+        .addEventListener('click', openCategoryModal);
+
+    document.getElementById('closeCategoryModal')
+        .addEventListener('click', closeCategoryModal);
+
+    document.getElementById('cancelCategory')
+        .addEventListener('click', closeCategoryModal);
+
+    categoryModal.addEventListener('click', function (event) {
+        if (event.target === categoryModal) {
+            closeCategoryModal();
+        }
+    });
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && categoryModal.classList.contains('show')) {
+            closeCategoryModal();
+        }
+    });
+
+    // SIMPAN KATEGORI BARU
+    categoryForm.addEventListener('submit', async function (event) {
+
+        event.preventDefault();
+
+        const name = document.getElementById('newCategoryName')
+            .value.trim();
+
+        if (!name) {
+            return;
+        }
+
+        const token = form.querySelector('input[name="_token"]').value;
+
+        saveCategoryButton.disabled = true;
+        saveCategoryButton.textContent = 'Menyimpan...';
+
+        categoryMessage.style.display = 'none';
+
+        try {
+
+            const response = await fetch(
+                @json(route('admin.categories.store')),
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': token,
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name
+                    }),
+                    credentials: 'same-origin'
+                }
+            );
+
+            const result = await response.json();
+
+            if (!response.ok || !result.success || !result.category) {
+                throw new Error(
+                    result.message || 'Gagal menyimpan kategori.'
+                );
+            }
+
+            const category = result.category;
+
+            const option = document.createElement('option');
+            option.value = category.id;
+            option.textContent = category.name;
+
+            categorySelect.appendChild(option);
+
+            // Langsung memilih kategori baru.
+            categorySelect.value = category.id;
+
+            closeCategoryModal();
+
+            alert('Kategori berhasil ditambahkan.');
+
+        } catch (error) {
+
+            categoryMessage.textContent =
+                error.message || 'Terjadi kesalahan saat menyimpan kategori.';
+
+            categoryMessage.style.display = 'block';
+            categoryMessage.style.color = '#dc2626';
+
+        } finally {
+
+            saveCategoryButton.disabled = false;
+            saveCategoryButton.textContent = 'Simpan Kategori';
+
+        }
+
+    });
+
+    // MEMILIH DAN MENGUNGGAH GAMBAR KE SERVER.
     function selectImage() {
 
         const input = document.createElement('input');
@@ -742,7 +1026,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
     }
 
-    // Preview gambar utama ketika memilih file baru.
+    // PREVIEW GAMBAR UTAMA.
     const featuredImage = document.getElementById('featuredImage');
     const previewImage = document.getElementById('previewImage');
     const imagePreview = document.getElementById('imagePreview');
@@ -781,7 +1065,7 @@ document.addEventListener('DOMContentLoaded', function () {
         reader.readAsDataURL(file);
     });
 
-    // Sinkronisasi editor sebelum form dikirim.
+    // SINKRONISASI EDITOR SEBELUM FORM DIKIRIM.
     form.addEventListener('submit', function (event) {
 
         contentInput.value = quill.root.innerHTML;

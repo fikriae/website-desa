@@ -351,8 +351,8 @@
                     <div class="leader-decoration"></div>
 
                     <div class="leader-photo">
-                        @if(file_exists(public_path('images/perangkat/kepala-desa.jpg')))
-                            <img src="{{ asset('images/perangkat/kepala-desa.jpg') }}"
+                        @if(file_exists(public_path('images/kades.png')))
+                            <img src="{{ asset('images/kades.png') }}"
                                  alt="Kepala Desa Manyar" loading="lazy">
                         @else
                             <div class="leader-placeholder">ED</div>
@@ -371,8 +371,8 @@
                     <div class="leader-decoration"></div>
 
                     <div class="leader-photo">
-                        @if(file_exists(public_path('images/perangkat/sekretaris-desa.jpg')))
-                            <img src="{{ asset('images/perangkat/sekretaris-desa.jpg') }}"
+                        @if(file_exists(public_path('images/sekdes.png')))
+                            <img src="{{ asset('images/sekdes.png') }}"
                                  alt="Sekretaris Desa" loading="lazy">
                         @else
                             <div class="leader-placeholder">RS</div>
@@ -391,8 +391,8 @@
                     <div class="leader-decoration"></div>
 
                     <div class="leader-photo">
-                        @if(file_exists(public_path('images/perangkat/ketua-bpd.jpg')))
-                            <img src="{{ asset('images/perangkat/ketua-bpd.jpg') }}"
+                        @if(file_exists(public_path('images/bpd.png')))
+                            <img src="{{ asset('images/bpd.png') }}"
                                  alt="Ketua BPD" loading="lazy">
                         @else
                             <div class="leader-placeholder">AM</div>

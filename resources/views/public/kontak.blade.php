@@ -137,35 +137,53 @@
         line-height: 1.7;
     }
 
-    .map-placeholder {
+    .map-frame {
+        width: 100%;
         flex: 1;
-        min-height: 280px;
+        min-height: 350px;
         background: #f1f5f9;
+    }
+
+    .map-frame iframe {
+        width: 100%;
+        height: 100%;
+        min-height: 350px;
+        border: 0;
+        display: block;
+    }
+
+    .map-footer {
+        padding: 17px 25px;
         display: flex;
-        flex-direction: column;
+        justify-content: space-between;
         align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 25px;
+        gap: 15px;
+        border-top: 1px solid #e5e7eb;
     }
 
-    .map-placeholder .map-icon {
-        font-size: 42px;
-        margin-bottom: 15px;
-    }
-
-    .map-placeholder h3 {
-        color: #334155;
-        font-size: 16px;
-        margin: 0 0 8px;
-    }
-
-    .map-placeholder p {
+    .map-footer p {
         color: #64748b;
-        font-size: 13px;
-        line-height: 1.7;
-        max-width: 350px;
+        font-size: 12px;
         margin: 0;
+        line-height: 1.6;
+    }
+
+    .map-footer a {
+        flex-shrink: 0;
+        display: inline-block;
+        padding: 11px 16px;
+        background: #1e462e;
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 600;
+        transition: .3s ease;
+    }
+
+    .map-footer a:hover {
+        background: #163622;
+        transform: translateY(-2px);
     }
 
     .service-callout {
@@ -209,13 +227,18 @@
         background: #163622;
     }
 
-    @media(max-width: 800px) {
+    @media (max-width: 800px) {
         .contact-layout {
             grid-template-columns: 1fr;
         }
+
+        .map-frame,
+        .map-frame iframe {
+            min-height: 320px;
+        }
     }
 
-    @media(max-width: 600px) {
+    @media (max-width: 600px) {
         .contact-page {
             padding: 45px 16px 60px;
         }
@@ -228,6 +251,11 @@
             flex-direction: column;
             align-items: flex-start;
             padding: 23px;
+        }
+
+        .map-footer {
+            flex-direction: column;
+            align-items: flex-start;
         }
     }
 </style>
@@ -266,9 +294,17 @@
                 <div>
                     <h3>Alamat Kantor Desa</h3>
                     <p>
-                        Alamat kantor Pemerintah Desa Manyar.
+                        Balai Desa Manyar
                         <br>
-                        Silakan lengkapi alamat lengkap di bagian ini.
+                        Kode Plus: W6PX+VGQ
+                        <br>
+                        Desa Manyar, Kecamatan Sekaran,
+                        <br>
+                        Kabupaten Lamongan,
+                        <br>
+                        Provinsi Jawa Timur 62261
+                        <br>
+                        Indonesia
                     </p>
                 </div>
             </div>
@@ -278,7 +314,10 @@
 
                 <div>
                     <h3>Telepon / WhatsApp</h3>
-                    <p>Nomor telepon resmi Pemerintah Desa Manyar belum ditambahkan.</p>
+                    <p>
+                        Nomor telepon resmi Pemerintah Desa Manyar
+                        belum ditambahkan.
+                    </p>
                 </div>
             </div>
 
@@ -287,7 +326,10 @@
 
                 <div>
                     <h3>Email</h3>
-                    <p>Email resmi Pemerintah Desa Manyar belum ditambahkan.</p>
+                    <p>
+                        Email resmi Pemerintah Desa Manyar
+                        belum ditambahkan.
+                    </p>
                 </div>
             </div>
 
@@ -297,8 +339,8 @@
                 <div>
                     <h3>Jam Pelayanan</h3>
                     <p>
-                        Silakan lengkapi hari dan jam pelayanan
-                        kantor desa.
+                        Informasi hari dan jam pelayanan
+                        kantor desa belum ditambahkan.
                     </p>
                 </div>
             </div>
@@ -311,20 +353,36 @@
                 <h2>Lokasi Kantor Desa</h2>
 
                 <p>
-                    Temukan lokasi kantor Pemerintah Desa Manyar
-                    untuk mendapatkan pelayanan secara langsung.
+                    Temukan lokasi Balai Desa Manyar melalui peta
+                    berikut untuk mendapatkan pelayanan secara langsung.
                 </p>
             </div>
 
-            <div class="map-placeholder">
-                <div class="map-icon">📍</div>
+            <div class="map-frame">
+                <iframe
+                    src="https://maps.google.com/maps?q=W6PX%2BVGQ%2C%20Manyar%2C%20Kecamatan%20Sekaran%2C%20Kabupaten%20Lamongan%2C%20Jawa%20Timur%2062261&t=&z=17&ie=UTF8&iwloc=&output=embed"
+                    width="100%"
+                    height="350"
+                    style="border:0;"
+                    allowfullscreen
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Peta Lokasi Balai Desa Manyar">
+                </iframe>
+            </div>
 
-                <h3>Peta Lokasi Kantor Desa</h3>
-
+            <div class="map-footer">
                 <p>
-                    Peta akan ditampilkan setelah alamat atau koordinat
-                    kantor Desa Manyar ditambahkan.
+                    Balai Desa Manyar, Kecamatan Sekaran,
+                    Kabupaten Lamongan.
                 </p>
+
+                <a
+                    href="https://www.google.com/maps/dir/?api=1&destination=W6PX%2BVGQ%2C%20Manyar%2C%20Sekaran%2C%20Lamongan%2C%20Jawa%20Timur"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Petunjuk Arah ↗
+                </a>
             </div>
 
         </div>

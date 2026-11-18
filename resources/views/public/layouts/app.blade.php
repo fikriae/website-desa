@@ -1,12 +1,16 @@
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#1e462e">
 
     <title>@yield('title', 'Website Resmi Desa Manyar')</title>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="{{ asset('images/manyar.png') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -597,7 +601,9 @@
             </p>
 
             <div class="social-links">
-                <a href="#"
+
+                <!-- INSTAGRAM -->
+                <a href="https://www.instagram.com/pemdesmanyar?lqvp=ajExZWxjZjljZXJm"
                    target="_blank"
                    rel="noopener noreferrer"
                    aria-label="Instagram Desa Manyar"
@@ -605,7 +611,8 @@
                     <i class="fa-brands fa-instagram"></i>
                 </a>
 
-                <a href="#"
+                <!-- FACEBOOK -->
+                <a href="https://www.facebook.com/share/1Fja3avFK1/"
                    target="_blank"
                    rel="noopener noreferrer"
                    aria-label="Facebook Desa Manyar"
@@ -613,13 +620,6 @@
                     <i class="fa-brands fa-facebook-f"></i>
                 </a>
 
-                <a href="#"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   aria-label="YouTube Desa Manyar"
-                   title="YouTube">
-                    <i class="fa-brands fa-youtube"></i>
-                </a>
             </div>
         </div>
 
@@ -634,6 +634,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+
     const header = document.getElementById('siteHeader');
     const toggle = document.getElementById('menuToggle');
     const navigation = document.getElementById('mainNavigation');
@@ -654,6 +655,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     toggle.addEventListener('click', function () {
         const opened = navigation.classList.toggle('open');
+
         toggle.classList.toggle('active', opened);
         toggle.setAttribute('aria-expanded', String(opened));
         toggle.setAttribute(
@@ -679,6 +681,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('resize', function () {
         if (window.innerWidth > 1050) closeMenu();
     });
+
 });
 </script>
 

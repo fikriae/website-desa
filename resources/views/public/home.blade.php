@@ -10,6 +10,7 @@
 ===================================================== --}}
 <section class="manyar-hero">
 
+    {{-- SLIDE 1 --}}
     <article class="manyar-slide active">
         <div class="slide-image">
             <img src="{{ asset('images/hero-1.jpg') }}" alt="Suasana Desa Manyar">
@@ -18,6 +19,7 @@
         <div class="slide-shade"></div>
 
         <div class="hero-inner">
+
             <div class="hero-copy">
                 <span class="eyebrow">WEBSITE RESMI PEMERINTAH DESA</span>
 
@@ -43,6 +45,57 @@
                 </div>
             </div>
 
+            {{-- ILUSTRASI SLIDE 1 --}}
+            <div class="hero-visual village-visual" aria-hidden="true">
+
+                <div class="visual-glow"></div>
+
+                <div class="visual-orbit orbit-one"></div>
+                <div class="visual-orbit orbit-two"></div>
+
+                <div class="village-sun"></div>
+
+                <div class="village-hill hill-one"></div>
+                <div class="village-hill hill-two"></div>
+
+                <div class="village-house house-one">
+                    <div class="house-roof"></div>
+                    <div class="house-body">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+
+                <div class="village-house house-two">
+                    <div class="house-roof"></div>
+                    <div class="house-body">
+                        <span></span>
+                    </div>
+                </div>
+
+                <div class="village-tree tree-one">
+                    <span></span>
+                </div>
+
+                <div class="village-tree tree-two">
+                    <span></span>
+                </div>
+
+                <div class="floating-particle particle-one"></div>
+                <div class="floating-particle particle-two"></div>
+                <div class="floating-particle particle-three"></div>
+                <div class="floating-particle particle-four"></div>
+
+                <div class="visual-caption">
+                    <span class="caption-dot"></span>
+                    <div>
+                        <small>DESA MANYAR</small>
+                        <strong>Desa yang Terus Berkembang</strong>
+                    </div>
+                </div>
+
+            </div>
+
             <div class="hero-side">
                 <div class="side-caption">
                     <span class="caption-line"></span>
@@ -52,9 +105,12 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </article>
 
+
+    {{-- SLIDE 2 --}}
     <article class="manyar-slide">
         <div class="slide-image">
             <img src="{{ asset('images/hero-2.jpg') }}" alt="Lingkungan Desa Manyar">
@@ -63,6 +119,7 @@
         <div class="slide-shade"></div>
 
         <div class="hero-inner">
+
             <div class="hero-copy">
                 <span class="eyebrow">INFORMASI DAN PELAYANAN</span>
 
@@ -88,6 +145,94 @@
                 </div>
             </div>
 
+            {{-- ILUSTRASI SLIDE 2 --}}
+            <div class="hero-visual service-visual" aria-hidden="true">
+
+                <div class="visual-glow"></div>
+
+                <div class="visual-orbit orbit-one"></div>
+                <div class="visual-orbit orbit-two"></div>
+
+                <div class="service-main-card">
+
+                    <div class="service-card-top">
+                        <div class="service-brand-icon">M</div>
+
+                        <div>
+                            <small>WEBSITE RESMI</small>
+                            <strong>Desa Manyar</strong>
+                        </div>
+
+                        <span class="service-status"></span>
+                    </div>
+
+                    <div class="service-card-title">
+                        <span>LAYANAN DIGITAL</span>
+                        <strong>Informasi Desa</strong>
+                        <p>Semua informasi dalam satu akses.</p>
+                    </div>
+
+                    <div class="service-card-items">
+
+                        <div class="mini-service-item">
+                            <span class="mini-icon announcement-icon">▤</span>
+                            <div>
+                                <strong>Pengumuman</strong>
+                                <small>Informasi terbaru</small>
+                            </div>
+                            <b>↗</b>
+                        </div>
+
+                        <div class="mini-service-item">
+                            <span class="mini-icon news-icon">▧</span>
+                            <div>
+                                <strong>Berita Desa</strong>
+                                <small>Kabar dan kegiatan</small>
+                            </div>
+                            <b>↗</b>
+                        </div>
+
+                        <div class="mini-service-item">
+                            <span class="mini-icon document-icon">▤</span>
+                            <div>
+                                <strong>Layanan Surat</strong>
+                                <small>Administrasi desa</small>
+                            </div>
+                            <b>↗</b>
+                        </div>
+
+                    </div>
+
+                    <div class="service-card-footer">
+                        <span></span>
+                        Akses informasi lebih mudah
+                    </div>
+
+                </div>
+
+                <div class="floating-service floating-top">
+                    <div class="floating-service-icon">✓</div>
+                    <div>
+                        <small>INFORMASI</small>
+                        <strong>Lebih Praktis</strong>
+                    </div>
+                </div>
+
+                <div class="floating-service floating-bottom">
+                    <div class="floating-service-icon">↗</div>
+                    <div>
+                        <small>PELAYANAN</small>
+                        <strong>Lebih Mudah</strong>
+                    </div>
+                </div>
+
+                <div class="floating-particle particle-one"></div>
+                <div class="floating-particle particle-two"></div>
+                <div class="floating-particle particle-three"></div>
+                <div class="floating-particle particle-four"></div>
+
+            </div>
+
             <div class="hero-side">
                 <div class="side-caption">
                     <span class="caption-line"></span>
@@ -97,9 +242,12 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </article>
 
+
+    {{-- NAVIGASI SLIDER --}}
     <div class="hero-navigation">
         <button type="button" id="heroPrev" aria-label="Slide sebelumnya">←</button>
 
@@ -118,6 +266,7 @@
         <span></span>
         GULIR UNTUK MENJELAJAHI
     </div>
+
 </section>
 
 
@@ -201,22 +350,12 @@
             <a href="{{ url('/pengumuman') }}" class="service-card">
                 <div class="service-icon">
                     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M19 44L31 32L56 57L44 69L19 44Z"
-                              stroke="currentColor" stroke-width="5"
-                              stroke-linejoin="round"/>
-                        <path d="M31 32C38 23 53 23 63 33C72 42 73 56 65 64"
-                              stroke="currentColor" stroke-width="5"
-                              stroke-linecap="round"/>
-                        <path d="M42 39L58 55"
-                              stroke="currentColor" stroke-width="5"
-                              stroke-linecap="round"/>
-                        <path d="M24 66L13 79C10 83 15 89 20 86L34 76"
-                              fill="currentColor"/>
-                        <path d="M43 69L58 84C62 88 69 82 65 78L54 65"
-                              fill="currentColor"/>
-                        <path d="M73 19L78 9M84 34L94 29M76 49L88 49"
-                              stroke="currentColor" stroke-width="5"
-                              stroke-linecap="round"/>
+                        <path d="M19 44L31 32L56 57L44 69L19 44Z" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+                        <path d="M31 32C38 23 53 23 63 33C72 42 73 56 65 64" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+                        <path d="M42 39L58 55" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+                        <path d="M24 66L13 79C10 83 15 89 20 86L34 76" fill="currentColor"/>
+                        <path d="M43 69L58 84C62 88 69 82 65 78L54 65" fill="currentColor"/>
+                        <path d="M73 19L78 9M84 34L94 29M76 49L88 49" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
                     </svg>
                 </div>
 
@@ -229,18 +368,11 @@
             <a href="{{ url('/agenda') }}" class="service-card">
                 <div class="service-icon">
                     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M19 22H70V83H19V22Z"
-                              stroke="currentColor" stroke-width="5"
-                              stroke-linejoin="round"/>
+                        <path d="M19 22H70V83H19V22Z" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
                         <path d="M33 15H56V28H33V15Z" fill="currentColor"/>
-                        <path d="M29 39H61M29 51H61M29 63H49"
-                              stroke="currentColor" stroke-width="4"
-                              stroke-linecap="round"/>
-                        <circle cx="70" cy="70" r="17"
-                                fill="white" stroke="currentColor" stroke-width="5"/>
-                        <path d="M70 60V71L78 76"
-                              stroke="currentColor" stroke-width="4"
-                              stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M29 39H61M29 51H61M29 63H49" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+                        <circle cx="70" cy="70" r="17" fill="white" stroke="currentColor" stroke-width="5"/>
+                        <path d="M70 60V71L78 76" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
 
@@ -253,16 +385,10 @@
             <a href="{{ route('public.news.index') }}" class="service-card">
                 <div class="service-icon">
                     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17 15H77V24H27V78H17V15Z"
-                              fill="currentColor"/>
-                        <path d="M29 31H88V83H29V31Z"
-                              stroke="currentColor" stroke-width="5"
-                              stroke-linejoin="round"/>
-                        <path d="M38 41H57V61H38V41Z"
-                              fill="currentColor"/>
-                        <path d="M64 43H80M64 53H80M38 70H80"
-                              stroke="currentColor" stroke-width="4"
-                              stroke-linecap="round"/>
+                        <path d="M17 15H77V24H27V78H17V15Z" fill="currentColor"/>
+                        <path d="M29 31H88V83H29V31Z" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+                        <path d="M38 41H57V61H38V41Z" fill="currentColor"/>
+                        <path d="M64 43H80M64 53H80M38 70H80" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
                     </svg>
                 </div>
 
@@ -275,16 +401,10 @@
             <a href="{{ url('/galeri') }}" class="service-card">
                 <div class="service-icon">
                     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M15 31L73 19L85 70L27 82L15 31Z"
-                              stroke="currentColor" stroke-width="5"
-                              stroke-linejoin="round"/>
-                        <path d="M25 23L80 31L73 79L18 71L25 23Z"
-                              fill="white" stroke="currentColor" stroke-width="5"
-                              stroke-linejoin="round"/>
+                        <path d="M15 31L73 19L85 70L27 82L15 31Z" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+                        <path d="M25 23L80 31L73 79L18 71L25 23Z" fill="white" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
                         <circle cx="40" cy="42" r="5" fill="currentColor"/>
-                        <path d="M25 65L42 49L54 59L64 51L75 68"
-                              stroke="currentColor" stroke-width="5"
-                              stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M25 65L42 49L54 59L64 51L75 68" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
 
@@ -297,18 +417,10 @@
             <a href="{{ url('/layanan-surat') }}" class="service-card service-card-featured">
                 <div class="service-icon">
                     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M24 13H61L79 31V86H24V13Z"
-                              stroke="currentColor" stroke-width="5"
-                              stroke-linejoin="round"/>
-                        <path d="M60 14V32H78"
-                              stroke="currentColor" stroke-width="5"
-                              stroke-linejoin="round"/>
-                        <path d="M36 46H67M36 58H67M36 70H57"
-                              stroke="currentColor" stroke-width="4"
-                              stroke-linecap="round"/>
-                        <path d="M15 35V91H69"
-                              stroke="currentColor" stroke-width="4"
-                              stroke-linecap="round"/>
+                        <path d="M24 13H61L79 31V86H24V13Z" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+                        <path d="M60 14V32H78" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+                        <path d="M36 46H67M36 58H67M36 70H57" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+                        <path d="M15 35V91H69" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
                     </svg>
                 </div>
 
@@ -535,7 +647,9 @@ body:has(.manyar-hero) .main-nav .nav-cta {
 }
 
 
-/* HERO */
+/* =====================================================
+   HERO
+===================================================== */
 
 .manyar-hero {
     position: relative;
@@ -591,20 +705,30 @@ body:has(.manyar-hero) .main-nav .nav-cta {
         linear-gradient(0deg, rgba(10,30,19,.42), transparent 40%);
 }
 
+/* PERBAIKAN POSISI UTAMA HERO */
+
 .hero-inner {
     position: relative;
     z-index: 2;
-    width: min(1160px, calc(100% - 60px));
+    width: min(1160px, calc(100% - 80px));
     height: 100%;
     margin: auto;
-    padding: 120px 0 105px;
+    padding: 110px 0 115px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
+/* BAGIAN KIRI */
+
 .hero-copy {
-    max-width: 710px;
+    position: relative;
+    z-index: 5;
+    width: 55%;
+    max-width: 600px;
+    flex: 0 0 55%;
+    margin: 0;
+    padding: 0;
     color: #fff;
     opacity: 0;
     transform: translateY(25px);
@@ -616,7 +740,7 @@ body:has(.manyar-hero) .main-nav .nav-cta {
 
 .eyebrow {
     display: inline-flex;
-    margin-bottom: 27px;
+    margin-bottom: 23px;
     padding: 10px 15px;
     border: 1px solid rgba(255,255,255,.26);
     border-radius: 30px;
@@ -628,13 +752,15 @@ body:has(.manyar-hero) .main-nav .nav-cta {
 }
 
 .hero-copy h1 {
-    margin-bottom: 25px;
+    max-width: 590px;
+    margin: 0 0 24px;
     color: #fff;
     font-family: 'Bricolage Grotesque', sans-serif;
-    font-size: clamp(45px, 5.5vw, 72px);
+    font-size: clamp(43px, 5vw, 65px);
     font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -2.3px;
+    line-height: 1.12;
+    letter-spacing: -2px;
+    overflow-wrap: break-word;
 }
 
 .hero-copy h1 span {
@@ -642,17 +768,18 @@ body:has(.manyar-hero) .main-nav .nav-cta {
 }
 
 .hero-copy p {
-    max-width: 520px;
-    margin-bottom: 35px;
+    max-width: 490px;
+    margin: 0 0 30px;
     color: rgba(255,255,255,.83);
-    font-size: 15px;
-    line-height: 1.9;
+    font-size: 14px;
+    line-height: 1.85;
 }
 
 .hero-actions {
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 13px;
+    gap: 12px;
 }
 
 .primary-action,
@@ -691,50 +818,518 @@ body:has(.manyar-hero) .main-nav .nav-cta {
     background: #fff;
 }
 
-.hero-side {
-    align-self: flex-end;
-    margin-bottom: 70px;
-    color: #fff;
+
+/* =====================================================
+   ILUSTRASI HERO
+===================================================== */
+
+.hero-visual {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    right: 0;
+    width: 400px;
+    height: 400px;
+    margin: 0;
+    transform: translateY(-45%);
     opacity: 0;
+    pointer-events: none;
 }
 
-.manyar-slide.active .hero-side {
-    animation: sideEnter .8s .5s ease forwards;
+.manyar-slide.active .hero-visual {
+    animation: visualEnterFixed 1.1s .35s ease forwards;
 }
 
-.side-caption {
+.visual-glow {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    background: rgba(229,206,145,.12);
+    filter: blur(45px);
+    transform: translate(-50%, -50%);
+    animation: glowPulse 5s ease-in-out infinite;
+}
+
+.visual-orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px solid rgba(229,206,145,.23);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.orbit-one {
+    width: 330px;
+    height: 330px;
+    animation: orbitRotate 24s linear infinite;
+}
+
+.orbit-two {
+    width: 390px;
+    height: 390px;
+    border-style: dashed;
+    border-color: rgba(255,255,255,.14);
+    animation: orbitRotate 35s linear infinite reverse;
+}
+
+.floating-particle {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #e5ce91;
+    box-shadow: 0 0 15px rgba(229,206,145,.8);
+    animation: particleFloat 4s ease-in-out infinite;
+}
+
+.particle-one {
+    top: 15%;
+    left: 25%;
+}
+
+.particle-two {
+    top: 28%;
+    right: 15%;
+    width: 5px;
+    height: 5px;
+    animation-delay: 1s;
+}
+
+.particle-three {
+    bottom: 20%;
+    left: 17%;
+    width: 6px;
+    height: 6px;
+    animation-delay: 1.8s;
+}
+
+.particle-four {
+    right: 25%;
+    bottom: 13%;
+    width: 4px;
+    height: 4px;
+    animation-delay: .6s;
+}
+
+
+/* ILUSTRASI DESA SLIDE 1 */
+
+.village-sun {
+    position: absolute;
+    top: 58px;
+    right: 100px;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #f5e4ae, #d9bd72);
+    box-shadow: 0 0 45px rgba(229,206,145,.3);
+    animation: sunFloat 5s ease-in-out infinite;
+}
+
+.village-hill {
+    position: absolute;
+    bottom: 75px;
+    border-radius: 50% 50% 0 0;
+    transform: rotate(-8deg);
+}
+
+.hill-one {
+    left: 10px;
+    width: 300px;
+    height: 120px;
+    background: linear-gradient(145deg, #315c40, #1d432d);
+}
+
+.hill-two {
+    right: 0;
+    width: 280px;
+    height: 105px;
+    background: linear-gradient(145deg, #244c35, #153a28);
+    transform: rotate(9deg);
+}
+
+.village-house {
+    position: absolute;
+    bottom: 140px;
+    z-index: 2;
+    animation: houseFloat 5s ease-in-out infinite;
+}
+
+.house-one {
+    left: 105px;
+}
+
+.house-two {
+    right: 75px;
+    bottom: 130px;
+    transform: scale(.78);
+    animation-delay: 1s;
+}
+
+.house-roof {
+    width: 110px;
+    height: 65px;
+    margin: auto;
+    background: #d8bc7c;
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.house-body {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    margin: -1px auto 0;
+    border: 3px solid rgba(255,255,255,.35);
+    background: linear-gradient(145deg, #f1e4c3, #d6c59b);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 12px;
+    padding-bottom: 0;
+}
+
+.house-body span {
+    width: 17px;
+    height: 32px;
+    border-radius: 8px 8px 0 0;
+    background: #36543e;
+}
+
+.house-body span:last-child {
+    height: 45px;
+    width: 20px;
+    background: #9b8554;
+}
+
+.village-tree {
+    position: absolute;
+    z-index: 3;
+    bottom: 130px;
+    width: 50px;
+    height: 100px;
+}
+
+.village-tree::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 0;
+    width: 40px;
+    height: 45px;
+    border-radius: 50%;
+    background: #6c9b6e;
+    box-shadow: -12px 20px 0 #47764f, 12px 20px 0 #47764f;
+}
+
+.village-tree span {
+    position: absolute;
+    bottom: 0;
+    left: 21px;
+    width: 9px;
+    height: 55px;
+    background: #c3a878;
+}
+
+.tree-one {
+    left: 35px;
+}
+
+.tree-two {
+    right: 35px;
+    transform: scale(.8);
+}
+
+
+/* KARTU PELAYANAN SLIDE 2 */
+
+.service-main-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 260px;
+    max-width: calc(100% - 40px);
+    box-sizing: border-box;
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,.65);
+    border-radius: 17px;
+    background: rgba(255,255,255,.96);
+    box-shadow: 0 25px 70px rgba(0,0,0,.22);
+    transform: translate(-50%, -50%) rotate(-3deg);
+    animation: cardFloat 6s ease-in-out infinite;
+}
+
+.service-card-top {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #e8eee8;
 }
 
-.caption-line {
-    width: 45px;
-    height: 1px;
-    background: #e5ce91;
+.service-brand-icon {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #1e462e;
+    color: #e5ce91;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
 }
 
-.side-caption small,
-.side-caption strong {
+.service-card-top small,
+.service-card-top strong {
     display: block;
 }
 
-.side-caption small {
-    margin-bottom: 5px;
-    color: rgba(255,255,255,.65);
-    font-size: 9px;
-    letter-spacing: 2px;
+.service-card-top small {
+    margin-bottom: 3px;
+    color: #8a998c;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
 }
 
-.side-caption strong {
-    font-size: 15px;
+.service-card-top strong {
+    color: #173b29;
+    font-size: 12px;
 }
+
+.service-status {
+    width: 8px;
+    height: 8px;
+    margin-left: auto;
+    border-radius: 50%;
+    background: #63b77a;
+    box-shadow: 0 0 0 4px #e4f4e7;
+}
+
+.service-card-title {
+    padding: 17px 0 12px;
+}
+
+.service-card-title span {
+    display: block;
+    margin-bottom: 5px;
+    color: #9c8a50;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+}
+
+.service-card-title strong {
+    display: block;
+    color: #173b29;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 19px;
+}
+
+.service-card-title p {
+    margin: 5px 0 0;
+    color: #78847a;
+    font-size: 10px;
+}
+
+.service-card-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mini-service-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px;
+    border: 1px solid #edf1ed;
+    border-radius: 9px;
+    background: #f9fbf9;
+}
+
+.mini-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: #eaf2ed;
+    color: #1e462e;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.news-icon {
+    background: #f5f0df;
+    color: #a38d43;
+}
+
+.document-icon {
+    background: #e8eff7;
+    color: #52769a;
+}
+
+.mini-service-item div {
+    min-width: 0;
+    flex: 1;
+}
+
+.mini-service-item strong,
+.mini-service-item small {
+    display: block;
+}
+
+.mini-service-item strong {
+    color: #25382a;
+    font-size: 10px;
+}
+
+.mini-service-item small {
+    margin-top: 3px;
+    color: #89958a;
+    font-size: 8px;
+}
+
+.mini-service-item b {
+    color: #a38d43;
+    font-size: 12px;
+}
+
+.service-card-footer {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 14px;
+    color: #708174;
+    font-size: 9px;
+}
+
+.service-card-footer span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #63b77a;
+}
+
+.floating-service {
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 14px;
+    border: 1px solid rgba(255,255,255,.65);
+    border-radius: 12px;
+    background: rgba(255,255,255,.96);
+    box-shadow: 0 12px 30px rgba(0,0,0,.15);
+}
+
+.floating-top {
+    top: 65px;
+    right: 0;
+    animation: floatingBadge 5s ease-in-out infinite;
+}
+
+.floating-bottom {
+    bottom: 45px;
+    left: 0;
+    animation: floatingBadge 5s 1.2s ease-in-out infinite;
+}
+
+.floating-service-icon {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    color: #fff;
+    background: #1e462e;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.floating-service small,
+.floating-service strong {
+    display: block;
+}
+
+.floating-service small {
+    margin-bottom: 3px;
+    color: #9b8b54;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.floating-service strong {
+    color: #24412e;
+    font-size: 10px;
+}
+
+
+/* SISI HERO */
+
+.hero-side {
+    display: none;
+}
+
+.visual-caption {
+    position: absolute;
+    z-index: 4;
+    right: 15px;
+    bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 13px;
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 9px;
+    background: rgba(15,42,27,.65);
+    backdrop-filter: blur(8px);
+}
+
+.caption-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #e5ce91;
+    box-shadow: 0 0 10px #e5ce91;
+}
+
+.visual-caption small,
+.visual-caption strong {
+    display: block;
+}
+
+.visual-caption small {
+    margin-bottom: 3px;
+    color: #e5ce91;
+    font-size: 7px;
+    letter-spacing: 1.5px;
+}
+
+.visual-caption strong {
+    color: #fff;
+    font-size: 10px;
+}
+
+
+/* NAVIGASI SLIDER */
 
 .hero-navigation {
     position: absolute;
     z-index: 5;
-    left: max(calc((100% - 1160px) / 2), 30px);
-    bottom: 42px;
+    left: max(calc((100% - 1160px) / 2), 40px);
+    bottom: 35px;
     display: flex;
     align-items: center;
     gap: 14px;
@@ -805,7 +1400,9 @@ body:has(.manyar-hero) .main-nav .nav-cta {
 }
 
 
-/* SEKILAS TENTANG KAMI - SATU LAYAR */
+/* =====================================================
+   SEKILAS TENTANG KAMI
+===================================================== */
 
 #sekilas {
     scroll-margin-top: 80px;
@@ -898,7 +1495,9 @@ body:has(.manyar-hero) .main-nav .nav-cta {
 }
 
 
-/* PELAYANAN KAMI - SATU LAYAR */
+/* =====================================================
+   PELAYANAN KAMI
+===================================================== */
 
 #pelayanan {
     scroll-margin-top: 80px;
@@ -1076,7 +1675,9 @@ body:has(.manyar-hero) .main-nav .nav-cta {
 }
 
 
-/* PERANGKAT DESA */
+/* =====================================================
+   PERANGKAT DESA
+===================================================== */
 
 .leadership-section {
     position: relative;
@@ -1220,7 +1821,9 @@ body:has(.manyar-hero) .main-nav .nav-cta {
 }
 
 
-/* LOKASI DESA */
+/* =====================================================
+   LOKASI DESA
+===================================================== */
 
 .location-section {
     padding: 85px 0;
@@ -1324,7 +1927,9 @@ body:has(.manyar-hero) .main-nav .nav-cta {
 }
 
 
-/* ANIMASI */
+/* =====================================================
+   ANIMASI
+===================================================== */
 
 @keyframes copyEnter {
     to {
@@ -1333,9 +1938,15 @@ body:has(.manyar-hero) .main-nav .nav-cta {
     }
 }
 
-@keyframes sideEnter {
+@keyframes visualEnterFixed {
+    from {
+        opacity: 0;
+        transform: translate(25px, -45%);
+    }
+
     to {
         opacity: 1;
+        transform: translate(0, -45%);
     }
 }
 
@@ -1344,13 +1955,113 @@ body:has(.manyar-hero) .main-nav .nav-cta {
     to { width: 100%; }
 }
 
+@keyframes glowPulse {
+    0%, 100% {
+        opacity: .55;
+        transform: translate(-50%, -50%) scale(.9);
+    }
 
-/* TABLET */
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.12);
+    }
+}
+
+@keyframes orbitRotate {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes particleFloat {
+    0%, 100% {
+        transform: translateY(0);
+        opacity: .55;
+    }
+
+    50% {
+        transform: translateY(-18px);
+        opacity: 1;
+    }
+}
+
+@keyframes sunFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+@keyframes houseFloat {
+    0%, 100% {
+        translate: 0 0;
+    }
+
+    50% {
+        translate: 0 -7px;
+    }
+}
+
+@keyframes cardFloat {
+    0%, 100% {
+        transform: translate(-50%, -50%) rotate(-3deg);
+    }
+
+    50% {
+        transform: translate(-50%, -53%) rotate(-1deg);
+    }
+}
+
+@keyframes floatingBadge {
+    0%, 100% {
+        translate: 0 0;
+    }
+
+    50% {
+        translate: 0 -10px;
+    }
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
 
 @media (max-width: 1050px) {
 
-    .hero-side {
-        display: none;
+    .hero-inner {
+        width: calc(100% - 60px);
+    }
+
+    .hero-copy {
+        width: 58%;
+        max-width: 560px;
+        flex-basis: 58%;
+    }
+
+    .hero-copy h1 {
+        font-size: clamp(40px, 5vw, 56px);
+    }
+
+    .hero-visual {
+        right: -35px;
+        transform: translateY(-45%) scale(.82);
+        transform-origin: center right;
+    }
+
+    .manyar-slide.active .hero-visual {
+        animation: visualEnterTabletFixed 1.1s .35s ease forwards;
+    }
+
+    .hero-navigation {
+        left: 30px;
     }
 
     .intro-container {
@@ -1396,10 +2107,42 @@ body:has(.manyar-hero) .main-nav .nav-cta {
     }
 }
 
+@keyframes visualEnterTabletFixed {
+    from {
+        opacity: 0;
+        transform: translate(20px, -45%) scale(.82);
+    }
 
-/* LAYAR KECIL */
+    to {
+        opacity: 1;
+        transform: translate(0, -45%) scale(.82);
+    }
+}
+
+
+/* =====================================================
+   LAYAR KECIL
+===================================================== */
 
 @media (max-width: 800px) {
+
+    .hero-visual {
+        right: -110px;
+        opacity: .35;
+        transform: translateY(-45%) scale(.75);
+        transform-origin: center right;
+    }
+
+    .manyar-slide.active .hero-visual {
+        animation: none;
+        opacity: .35;
+    }
+
+    .hero-copy {
+        width: 65%;
+        max-width: 650px;
+        flex-basis: 65%;
+    }
 
     .village-intro,
     .services-section {
@@ -1429,7 +2172,9 @@ body:has(.manyar-hero) .main-nav .nav-cta {
 }
 
 
-/* HP */
+/* =====================================================
+   HP
+===================================================== */
 
 @media (max-width: 750px) {
 
@@ -1440,21 +2185,46 @@ body:has(.manyar-hero) .main-nav .nav-cta {
 
     .hero-inner {
         width: calc(100% - 40px);
-        padding: 115px 0 120px;
+        padding: 100px 0 120px;
+    }
+
+    .hero-copy {
+        width: 100%;
+        max-width: 100%;
+        flex: 0 0 100%;
     }
 
     .hero-copy h1 {
-        font-size: clamp(39px, 10vw, 53px);
+        max-width: 100%;
+        font-size: clamp(38px, 9vw, 52px);
+        line-height: 1.12;
         letter-spacing: -1.5px;
     }
 
     .hero-copy p {
+        max-width: 100%;
         font-size: 13px;
+        line-height: 1.75;
     }
 
     .eyebrow {
         font-size: 8px;
         letter-spacing: 1.2px;
+    }
+
+    .hero-visual {
+        top: 58%;
+        right: -165px;
+        width: 400px;
+        height: 400px;
+        transform: translateY(-50%) scale(.68);
+        transform-origin: center right;
+        opacity: .18;
+    }
+
+    .manyar-slide.active .hero-visual {
+        animation: none;
+        opacity: .18;
     }
 
     .hero-navigation {
@@ -1627,6 +2397,19 @@ body:has(.manyar-hero) .main-nav .nav-cta {
     .service-card p {
         font-size: 10px;
     }
+
+    .hero-copy h1 {
+        font-size: 37px;
+    }
+
+    .hero-visual {
+        right: -200px;
+        opacity: .12;
+    }
+
+    .manyar-slide.active .hero-visual {
+        opacity: .12;
+    }
 }
 
 
@@ -1636,6 +2419,14 @@ body:has(.manyar-hero) .main-nav .nav-cta {
 
     html {
         scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
     }
 
     .slide-image img {

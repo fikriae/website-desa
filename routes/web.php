@@ -29,10 +29,6 @@ use App\Http\Controllers\Public\DocumentController as PublicDocumentController;
 Route::view('/', 'public.home')
     ->name('home');
 
-// Profil Desa
-Route::view('/profil', 'public.profil')
-    ->name('public.profile');
-
 // Pengumuman
 Route::get('/pengumuman', [PublicAnnouncementController::class, 'index'])
     ->name('public.announcements.index');

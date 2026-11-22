@@ -81,31 +81,49 @@
         margin: 0;
     }
 
-    /* FILTER */
+    /* FILTER DAN PENCARIAN */
     .gallery-filter {
         position: relative;
         z-index: 1;
-        display: flex;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 230px auto auto;
         align-items: center;
-        gap: 11px;
-        flex-wrap: wrap;
-        max-width: 850px;
+        gap: 12px;
+        max-width: 950px;
         margin: 0 auto 38px;
-        padding: 19px;
+        padding: 16px;
         background: #fff;
         border: 1px solid #e7eee8;
         border-radius: 15px;
         box-shadow: 0 8px 25px rgba(30, 70, 46, .06);
     }
 
+    .gallery-search {
+        position: relative;
+        min-width: 0;
+    }
+
+    .gallery-search svg {
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        width: 17px;
+        height: 17px;
+        color: #91a096;
+        transform: translateY(-50%);
+        pointer-events: none;
+    }
+
     .gallery-filter input,
     .gallery-filter select {
-        min-height: 45px;
-        padding: 11px 14px;
+        width: 100%;
+        height: 46px;
+        box-sizing: border-box;
+        padding: 0 14px;
         border: 1px solid #dce6dd;
         border-radius: 9px;
         background: #fff;
+        font-family: inherit;
         font-size: 13px;
         color: #344a39;
         outline: none;
@@ -113,42 +131,61 @@
     }
 
     .gallery-filter input {
-        width: 290px;
-    }
-
-    .gallery-filter select {
-        min-width: 190px;
-        cursor: pointer;
-    }
-
-    .gallery-filter input:focus,
-    .gallery-filter select:focus {
-        border-color: #1e462e;
-        box-shadow: 0 0 0 3px rgba(30, 70, 46, .08);
+        padding-left: 42px;
     }
 
     .gallery-filter input::placeholder {
         color: #a0aaa2;
     }
 
+    .gallery-filter select {
+        cursor: pointer;
+    }
+
+    .gallery-filter input:focus,
+    .gallery-filter select:focus {
+        border-color: #78947f;
+        box-shadow: 0 0 0 3px rgba(30, 70, 46, .08);
+    }
+
     .gallery-filter button {
-        min-height: 45px;
-        padding: 11px 23px;
+        height: 46px;
+        padding: 0 21px;
         border: 1px solid #1e462e;
         border-radius: 9px;
         background: #1e462e;
         color: #fff;
+        font-family: inherit;
         font-size: 13px;
         font-weight: 700;
         cursor: pointer;
+        white-space: nowrap;
         transition: all .3s ease;
     }
 
     .gallery-filter button:hover {
-        background: #fff;
-        color: #1e462e;
+        background: #12301e;
+        border-color: #12301e;
         transform: translateY(-2px);
         box-shadow: 0 6px 15px rgba(30, 70, 46, .12);
+    }
+
+    .gallery-reset {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 46px;
+        padding: 0 12px;
+        color: #87958a;
+        font-size: 12px;
+        font-weight: 700;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: color .25s ease;
+    }
+
+    .gallery-reset:hover {
+        color: #a58c3d;
     }
 
     /* GRID GALERI */
@@ -167,7 +204,6 @@
         border: 1px solid #e7eee8;
         border-radius: 16px;
         box-shadow: 0 7px 22px rgba(30, 70, 46, .07);
-        cursor: pointer;
         transition: transform .35s ease, box-shadow .35s ease;
         animation: galleryFadeUp .65s ease both;
     }
@@ -181,6 +217,7 @@
         position: relative;
         overflow: hidden;
         background: #eaf2ed;
+        cursor: pointer;
     }
 
     .gallery-item img {
@@ -209,6 +246,7 @@
         letter-spacing: .5px;
         opacity: 0;
         transition: opacity .3s ease;
+        pointer-events: none;
     }
 
     .gallery-item:hover .gallery-image-wrapper::after {
@@ -237,7 +275,7 @@
         margin: 0 0 13px;
     }
 
-    .gallery-caption span {
+    .gallery-caption .gallery-album {
         display: inline-flex;
         align-items: center;
         gap: 6px;
@@ -250,12 +288,51 @@
         font-weight: 700;
     }
 
-    .gallery-caption span::before {
+    .gallery-caption .gallery-album::before {
         content: "";
         width: 6px;
         height: 6px;
         background: #b49b45;
         border-radius: 50%;
+    }
+
+    /* BAGIKAN FOTO */
+    .gallery-share {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 16px;
+        padding-top: 13px;
+        border-top: 1px solid #edf1ed;
+    }
+
+    .gallery-share button,
+    .gallery-share a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0;
+        border: none;
+        background: transparent;
+        color: #718075;
+        font-family: inherit;
+        font-size: 11px;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        transition: .2s ease;
+    }
+
+    .gallery-share button:hover,
+    .gallery-share a:hover {
+        color: #1e462e;
+    }
+
+    .gallery-share svg {
+        width: 14px;
+        height: 14px;
+        flex-shrink: 0;
     }
 
     /* EMPTY STATE */
@@ -294,6 +371,19 @@
         margin: 0;
     }
 
+    .gallery-empty a {
+        display: inline-flex;
+        margin-top: 18px;
+        color: #1e462e;
+        font-size: 12px;
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    .gallery-empty a:hover {
+        color: #a58c3d;
+    }
+
     /* PAGINATION */
     .gallery-pagination {
         position: relative;
@@ -327,14 +417,13 @@
     .gallery-modal {
         display: none;
         position: fixed;
-        z-index: 9999;
+        z-index: 99999;
         inset: 0;
         background: rgba(9, 24, 14, .94);
         justify-content: center;
         align-items: center;
-        padding: 35px;
+        padding: 55px 25px 30px;
         opacity: 0;
-        transition: opacity .3s ease;
         backdrop-filter: blur(5px);
     }
 
@@ -345,6 +434,7 @@
     }
 
     .gallery-modal img {
+        display: block;
         max-width: 90%;
         max-height: 85vh;
         object-fit: contain;
@@ -353,26 +443,32 @@
         animation: modalZoom .3s ease both;
     }
 
+    /* TOMBOL X */
     .gallery-modal-close {
         position: absolute;
         top: 20px;
-        right: 28px;
+        right: 25px;
+        z-index: 100001;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 43px;
-        height: 43px;
+        width: 46px;
+        height: 46px;
+        padding: 0;
         color: #fff;
-        font-size: 30px;
+        font-family: Arial, sans-serif;
+        font-size: 32px;
+        line-height: 1;
         cursor: pointer;
-        background: rgba(255, 255, 255, .12);
-        border: 1px solid rgba(255, 255, 255, .2);
+        background: rgba(255, 255, 255, .15);
+        border: 1px solid rgba(255, 255, 255, .3);
         border-radius: 50%;
         transition: all .25s ease;
     }
 
     .gallery-modal-close:hover {
         background: #b49b45;
+        border-color: #b49b45;
         transform: rotate(90deg);
     }
 
@@ -403,7 +499,19 @@
         }
     }
 
+    /* RESPONSIVE */
     @media (max-width: 900px) {
+        .gallery-filter {
+            grid-template-columns: minmax(0, 1fr) 210px auto;
+        }
+
+        .gallery-reset {
+            grid-column: 1 / -1;
+            justify-self: center;
+            height: auto;
+            padding: 4px 12px;
+        }
+
         .gallery-grid-public {
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 20px;
@@ -432,8 +540,8 @@
         }
 
         .gallery-filter {
-            flex-direction: column;
-            align-items: stretch;
+            grid-template-columns: 1fr;
+            gap: 10px;
             padding: 15px;
             margin-bottom: 27px;
         }
@@ -442,6 +550,12 @@
         .gallery-filter select,
         .gallery-filter button {
             width: 100%;
+        }
+
+        .gallery-reset {
+            grid-column: auto;
+            justify-self: stretch;
+            text-align: center;
         }
 
         .gallery-grid-public {
@@ -458,7 +572,7 @@
         }
 
         .gallery-modal {
-            padding: 15px;
+            padding: 60px 15px 20px;
         }
 
         .gallery-modal img {
@@ -469,6 +583,8 @@
         .gallery-modal-close {
             top: 12px;
             right: 12px;
+            width: 42px;
+            height: 42px;
         }
     }
 
@@ -492,6 +608,7 @@
 
 <section class="gallery-public">
 
+    {{-- HEADER --}}
     <div class="gallery-heading">
         <div class="eyebrow">Dokumentasi Desa</div>
 
@@ -503,45 +620,73 @@
         </p>
     </div>
 
-    {{-- Pencarian dan filter album --}}
-    <form action="{{ route('public.galleries.index') }}"
-          method="GET"
-          class="gallery-filter">
+    {{-- PENCARIAN DAN FILTER ALBUM --}}
+    <form
+        action="{{ route('public.galleries.index') }}"
+        method="GET"
+        class="gallery-filter"
+    >
 
-        <input
-            type="text"
-            name="search"
-            value="{{ $search }}"
-            placeholder="Cari foto atau kegiatan..."
-        >
+        <div class="gallery-search">
+            <svg viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2"
+                stroke-linecap="round">
+                <circle cx="11" cy="11" r="7"></circle>
+                <path d="m16 16 4 4"></path>
+            </svg>
 
-        <select name="album">
+            <input
+                type="text"
+                name="search"
+                value="{{ $search ?? '' }}"
+                placeholder="Cari foto atau kegiatan..."
+                aria-label="Cari foto atau kegiatan"
+            >
+        </div>
+
+        <select name="album" aria-label="Pilih album">
             <option value="">Semua Album</option>
 
             @foreach($albums as $item)
-                <option value="{{ $item }}"
-                    {{ $album == $item ? 'selected' : '' }}>
+                <option
+                    value="{{ $item }}"
+                    {{ ($album ?? '') == $item ? 'selected' : '' }}
+                >
                     {{ $item }}
                 </option>
             @endforeach
         </select>
 
-        <button type="submit">Cari Foto</button>
+        <button type="submit">
+            Cari Foto
+        </button>
+
+        @if(!empty($search) || !empty($album))
+            <a
+                href="{{ route('public.galleries.index') }}"
+                class="gallery-reset"
+            >
+                Reset Pencarian
+            </a>
+        @endif
 
     </form>
 
-    {{-- Daftar foto --}}
+    {{-- DAFTAR FOTO --}}
     <div class="gallery-grid-public">
 
         @forelse($galleries as $gallery)
 
-            <article class="gallery-item"
-                onclick="openGalleryImage(
-                    {{ Js::from(asset('storage/' . $gallery->image_path)) }},
-                    {{ Js::from($gallery->title) }}
-                )">
+            <article class="gallery-item">
 
-                <div class="gallery-image-wrapper">
+                {{-- GAMBAR --}}
+                <div
+                    class="gallery-image-wrapper"
+                    onclick="openGalleryImage(
+                        {{ Js::from(asset('storage/' . $gallery->image_path)) }},
+                        {{ Js::from($gallery->title) }}
+                    )"
+                >
                     <img
                         src="{{ asset('storage/' . $gallery->image_path) }}"
                         alt="{{ $gallery->title }}"
@@ -549,6 +694,7 @@
                     >
                 </div>
 
+                {{-- INFORMASI FOTO --}}
                 <div class="gallery-caption">
 
                     <h3>{{ $gallery->title }}</h3>
@@ -558,8 +704,45 @@
                     @endif
 
                     @if($gallery->album)
-                        <span>{{ $gallery->album }}</span>
+                        <span class="gallery-album">
+                            {{ $gallery->album }}
+                        </span>
                     @endif
+
+                    {{-- BAGIKAN FOTO --}}
+                    <div class="gallery-share">
+
+                        <button
+                            type="button"
+                            onclick="copyGalleryLink(this)"
+                            data-url="{{ asset('storage/' . $gallery->image_path) }}"
+                            title="Salin link foto"
+                        >
+                            <svg viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="8" y="8" width="13" height="13" rx="2"></rect>
+                                <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"></path>
+                            </svg>
+                            <span>Salin Link</span>
+                        </button>
+
+                        <a
+                            href="https://wa.me/?text={{ urlencode($gallery->title . ' - Galeri Desa Manyar: ' . asset('storage/' . $gallery->image_path)) }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title="Bagikan foto melalui WhatsApp"
+                        >
+                            <svg viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20l1.1-5.3A8.4 8.4 0 1 1 21 11.5Z"></path>
+                                <path d="M8.5 9.5c.5 2 2 3.5 4 4l1-1 2 1c-.3 1-1 1.5-2 1.5-3 0-6.5-3.5-6.5-6.5 0-1 .5-1.7 1.5-2l1 2-1 1Z"></path>
+                            </svg>
+                            <span>WhatsApp</span>
+                        </a>
+
+                    </div>
 
                 </div>
 
@@ -573,69 +756,145 @@
                 <h3>Belum Ada Foto Galeri</h3>
 
                 <p>
-                    @if($search || $album)
+                    @if(!empty($search) || !empty($album))
                         Foto yang Anda cari belum ditemukan.
                     @else
                         Dokumentasi foto Desa Manyar belum tersedia.
                     @endif
                 </p>
+
+                @if(!empty($search) || !empty($album))
+                    <a href="{{ route('public.galleries.index') }}">
+                        Tampilkan Semua Foto
+                    </a>
+                @endif
             </div>
 
         @endforelse
 
     </div>
 
+    {{-- PAGINATION --}}
     <div class="gallery-pagination">
-        {{ $galleries->links() }}
+        {{ $galleries->appends(request()->query())->links() }}
     </div>
 
 </section>
 
-{{-- Modal foto --}}
-<div class="gallery-modal" id="galleryModal"
-     onclick="closeGalleryImage()">
-
-    <button type="button"
-            class="gallery-modal-close"
-            onclick="event.stopPropagation(); closeGalleryImage()"
-            aria-label="Tutup foto">
+{{-- MODAL FOTO --}}
+<div
+    class="gallery-modal"
+    id="galleryModal"
+    onclick="closeGalleryImage()"
+    aria-hidden="true"
+>
+    {{-- TOMBOL X --}}
+    <button
+        type="button"
+        class="gallery-modal-close"
+        onclick="event.stopPropagation(); closeGalleryImage()"
+        aria-label="Tutup foto"
+        title="Tutup foto"
+    >
         &times;
     </button>
 
-    <img id="galleryModalImage" src="" alt="Foto galeri"
-         onclick="event.stopPropagation()">
-
+    <img
+        id="galleryModalImage"
+        src=""
+        alt="Foto galeri"
+        onclick="event.stopPropagation()"
+    >
 </div>
 
 @endsection
 
 @push('scripts')
 <script>
+    // MEMBUKA FOTO
     function openGalleryImage(imageUrl, title) {
         const modal = document.getElementById('galleryModal');
         const image = document.getElementById('galleryModalImage');
 
+        if (!modal || !image) return;
+
         image.src = imageUrl;
-        image.alt = title;
+        image.alt = title || 'Foto Galeri';
 
         modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+
         document.body.style.overflow = 'hidden';
     }
 
+    // MENUTUP FOTO
     function closeGalleryImage() {
         const modal = document.getElementById('galleryModal');
         const image = document.getElementById('galleryModalImage');
 
+        if (!modal || !image) return;
+
         modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+
         image.src = '';
 
         document.body.style.overflow = '';
     }
 
+    // TOMBOL ESCAPE UNTUK MENUTUP MODAL
     document.addEventListener('keydown', function(event) {
         if (event.key === 'Escape') {
             closeGalleryImage();
         }
     });
+
+    // MENYALIN LINK FOTO
+    function copyGalleryLink(button) {
+        const url = button.dataset.url;
+        const label = button.querySelector('span');
+        const originalLabel = label.textContent;
+
+        function showCopied() {
+            label.textContent = 'Tersalin!';
+
+            setTimeout(() => {
+                label.textContent = originalLabel;
+            }, 1800);
+        }
+
+        function fallbackCopyGallery() {
+            const textarea = document.createElement('textarea');
+
+            textarea.value = url;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+
+            document.body.appendChild(textarea);
+            textarea.select();
+
+            try {
+                const success = document.execCommand('copy');
+
+                if (success) {
+                    showCopied();
+                } else {
+                    alert('Gagal menyalin link foto.');
+                }
+            } catch (error) {
+                alert('Gagal menyalin link foto.');
+            }
+
+            document.body.removeChild(textarea);
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(url)
+                .then(showCopied)
+                .catch(fallbackCopyGallery);
+        } else {
+            fallbackCopyGallery();
+        }
+    }
 </script>
 @endpush

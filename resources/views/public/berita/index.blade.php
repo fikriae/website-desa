@@ -314,6 +314,45 @@
         transform: translateX(5px);
     }
 
+    /* BAGIKAN BERITA */
+    .news-share {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 17px;
+        padding-top: 13px;
+        border-top: 1px solid #edf1ed;
+    }
+
+    .news-share button,
+    .news-share a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0;
+        border: none;
+        background: transparent;
+        color: #718075;
+        font-family: inherit;
+        font-size: 11px;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        transition: .2s ease;
+    }
+
+    .news-share button:hover,
+    .news-share a:hover {
+        color: #1e462e;
+    }
+
+    .news-share svg {
+        width: 14px;
+        height: 14px;
+        flex-shrink: 0;
+    }
+
     /* BERITA KOSONG */
     .news-empty {
         text-align: center;
@@ -464,7 +503,6 @@
             method="GET"
             class="news-filter"
         >
-
             <div class="news-search">
                 <input
                     type="text"
@@ -499,7 +537,6 @@
                     Reset
                 </a>
             @endif
-
         </form>
 
         {{-- JUMLAH HASIL PENCARIAN --}}
@@ -572,12 +609,48 @@
                                 {{ $item->excerpt ?: \Illuminate\Support\Str::limit(strip_tags($item->content), 130) }}
                             </p>
 
+                            {{-- BACA SELENGKAPNYA --}}
                             <a
                                 href="{{ route('public.news.show', $item->slug) }}"
                                 class="news-read-more"
                             >
                                 Baca Selengkapnya <span>→</span>
                             </a>
+
+                            {{-- BAGIKAN BERITA --}}
+                            <div class="news-share">
+
+                                <button
+                                    type="button"
+                                    onclick="copyNewsLink(this)"
+                                    data-url="{{ route('public.news.show', $item->slug) }}"
+                                    title="Salin link berita"
+                                >
+                                    <svg viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="1.8"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="8" y="8" width="13" height="13" rx="2"></rect>
+                                        <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"></path>
+                                    </svg>
+                                    <span>Salin Link</span>
+                                </button>
+
+                                <a
+                                    href="https://wa.me/?text={{ urlencode($item->title . ' - Berita Desa Manyar: ' . route('public.news.show', $item->slug)) }}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    title="Bagikan melalui WhatsApp"
+                                >
+                                    <svg viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="1.8"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20l1.1-5.3A8.4 8.4 0 1 1 21 11.5Z"></path>
+                                        <path d="M8.5 9.5c.5 2 2 3.5 4 4l1-1 2 1c-.3 1-1 1.5-2 1.5-3 0-6.5-3.5-6.5-6.5 0-1 .5-1.7 1.5-2l1 2-1 1Z"></path>
+                                    </svg>
+                                    <span>WhatsApp</span>
+                                </a>
+
+                            </div>
 
                         </div>
 
@@ -622,4 +695,53 @@
     </div>
 
 </section>
+
+<script>
+    function copyNewsLink(button) {
+        const url = button.dataset.url;
+        const originalText = button.querySelector('span');
+        const originalLabel = originalText.textContent;
+
+        function showCopied() {
+            originalText.textContent = 'Tersalin!';
+
+            setTimeout(() => {
+                originalText.textContent = originalLabel;
+            }, 1800);
+        }
+
+        function fallbackCopyNews() {
+            const textarea = document.createElement('textarea');
+
+            textarea.value = url;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+
+            document.body.appendChild(textarea);
+            textarea.select();
+
+            try {
+                const success = document.execCommand('copy');
+
+                if (success) {
+                    showCopied();
+                } else {
+                    alert('Gagal menyalin link berita.');
+                }
+            } catch (error) {
+                alert('Gagal menyalin link berita.');
+            }
+
+            document.body.removeChild(textarea);
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(url)
+                .then(showCopied)
+                .catch(fallbackCopyNews);
+        } else {
+            fallbackCopyNews();
+        }
+    }
+</script>
 @endsection

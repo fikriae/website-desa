@@ -242,6 +242,45 @@
         max-width: 100%;
     }
 
+    /* BAGIKAN BERITA */
+    .detail-share {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 18px;
+        margin-top: 27px;
+        padding-top: 18px;
+        border-top: 1px solid #e8eee8;
+    }
+
+    .detail-share button,
+    .detail-share a {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 0;
+        border: none;
+        background: transparent;
+        color: #718075;
+        font-family: inherit;
+        font-size: 12px;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        transition: .2s ease;
+    }
+
+    .detail-share button:hover,
+    .detail-share a:hover {
+        color: #1e462e;
+    }
+
+    .detail-share svg {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+    }
+
     .back-link {
         display: inline-flex;
         align-items: center;
@@ -462,6 +501,42 @@
                 {!! $news->content !!}
             </div>
 
+            {{-- BAGIKAN BERITA --}}
+            <div class="detail-share">
+
+                <button
+                    type="button"
+                    onclick="copyDetailNewsLink(this)"
+                    data-url="{{ route('public.news.show', $news->slug) }}"
+                    title="Salin link berita"
+                >
+                    <svg viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="8" y="8" width="13" height="13" rx="2"></rect>
+                        <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"></path>
+                    </svg>
+                    <span>Salin Link</span>
+                </button>
+
+                <a
+                    href="https://wa.me/?text={{ urlencode($news->title . ' - Berita Desa Manyar: ' . route('public.news.show', $news->slug)) }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Bagikan melalui WhatsApp"
+                >
+                    <svg viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20l1.1-5.3A8.4 8.4 0 1 1 21 11.5Z"></path>
+                        <path d="M8.5 9.5c.5 2 2 3.5 4 4l1-1 2 1c-.3 1-1 1.5-2 1.5-3 0-6.5-3.5-6.5-6.5 0-1 .5-1.7 1.5-2l1 2-1 1Z"></path>
+                    </svg>
+                    <span>WhatsApp</span>
+                </a>
+
+            </div>
+
+            {{-- KEMBALI KE DAFTAR BERITA --}}
             <a href="{{ route('public.news.index') }}" class="back-link">
                 <span>←</span>
                 Kembali ke Daftar Berita
@@ -496,4 +571,53 @@
 
     </div>
 </section>
+
+<script>
+    function copyDetailNewsLink(button) {
+        const url = button.dataset.url;
+        const label = button.querySelector('span');
+        const originalLabel = label.textContent;
+
+        function showCopied() {
+            label.textContent = 'Tersalin!';
+
+            setTimeout(() => {
+                label.textContent = originalLabel;
+            }, 1800);
+        }
+
+        function fallbackCopyNews() {
+            const textarea = document.createElement('textarea');
+
+            textarea.value = url;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+
+            document.body.appendChild(textarea);
+            textarea.select();
+
+            try {
+                const success = document.execCommand('copy');
+
+                if (success) {
+                    showCopied();
+                } else {
+                    alert('Gagal menyalin link berita.');
+                }
+            } catch (error) {
+                alert('Gagal menyalin link berita.');
+            }
+
+            document.body.removeChild(textarea);
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(url)
+                .then(showCopied)
+                .catch(fallbackCopyNews);
+        } else {
+            fallbackCopyNews();
+        }
+    }
+</script>
 @endsection

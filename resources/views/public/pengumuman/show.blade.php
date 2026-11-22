@@ -32,6 +32,7 @@
     }
 
     /* BREADCRUMB */
+
     .breadcrumb {
         display: flex;
         flex-wrap: wrap;
@@ -58,6 +59,7 @@
     }
 
     /* LAYOUT */
+
     .detail-layout {
         display: grid;
         grid-template-columns: minmax(0, 1fr) 310px;
@@ -66,6 +68,7 @@
     }
 
     /* ARTICLE */
+
     .detail-article {
         min-width: 0;
         background: #fff;
@@ -110,6 +113,7 @@
     }
 
     /* ARTICLE CONTENT */
+
     .detail-content {
         color: #46564b;
         font-size: 14px;
@@ -195,7 +199,52 @@
         color: #12301e;
     }
 
+    /* SHARE PENGUMUMAN */
+
+    .detail-share {
+        display: flex;
+        align-items: center;
+        gap: 17px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+        padding-top: 17px;
+        border-top: 1px solid #edf1ed;
+    }
+
+    .detail-share a,
+    .detail-share button {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: #87928a;
+        font-family: inherit;
+        font-size: 11px;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: color .25s ease;
+    }
+
+    .detail-share a:hover,
+    .detail-share button:hover {
+        color: #1e462e;
+    }
+
+    .detail-share .whatsapp-share:hover {
+        color: #16a34a;
+    }
+
+    .detail-share svg {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+    }
+
     /* BACK LINK */
+
     .back-link {
         display: inline-flex;
         align-items: center;
@@ -218,6 +267,7 @@
     }
 
     /* SIDEBAR */
+
     .detail-sidebar {
         position: sticky;
         top: 25px;
@@ -299,6 +349,7 @@
     }
 
     /* RESPONSIVE */
+
     @media (max-width: 900px) {
         .detail-layout {
             grid-template-columns: minmax(0, 1fr) 260px;
@@ -367,22 +418,34 @@
 </style>
 @endpush
 
+
 @section('content')
 
 <section class="detail-page">
 
     <div class="detail-container">
 
+        {{-- BREADCRUMB --}}
         <div class="breadcrumb">
+
             <a href="{{ route('home') }}">Beranda</a>
+
             <span>›</span>
-            <a href="{{ route('public.announcements.index') }}">Pengumuman</a>
+
+            <a href="{{ route('public.announcements.index') }}">
+                Pengumuman
+            </a>
+
             <span>›</span>
+
             <span>Detail</span>
+
         </div>
+
 
         <div class="detail-layout">
 
+            {{-- DETAIL PENGUMUMAN --}}
             <article class="detail-article">
 
                 <div class="detail-date">
@@ -390,39 +453,112 @@
                     {{ $announcement->published_at->translatedFormat('d F Y') }}
                 </div>
 
+
                 <h1 class="detail-title">
                     {{ $announcement->title }}
                 </h1>
 
+
                 @if ($announcement->featured_image)
+
                     <img
                         src="{{ asset('storage/' . $announcement->featured_image) }}"
                         alt="{{ $announcement->title }}"
                         class="detail-image"
                     >
+
                 @endif
 
+
+                {{-- ISI PENGUMUMAN --}}
                 <div class="detail-content">
                     {!! $announcement->content !!}
                 </div>
 
+
+                {{-- BAGIKAN PENGUMUMAN --}}
+                <div class="detail-share">
+
+                    {{-- SALIN LINK --}}
+                    <button
+                        type="button"
+                        onclick="copyDetailAnnouncementLink(this)"
+                        data-url="{{ route('public.announcements.show', $announcement->slug) }}"
+                        aria-label="Salin link pengumuman"
+                    >
+
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="1.8"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
+                            <rect x="8" y="8" width="13" height="13" rx="2"/>
+                            <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+
+                        </svg>
+
+                        <span>Salin Link</span>
+
+                    </button>
+
+
+                    {{-- WHATSAPP --}}
+                    <a
+                        class="whatsapp-share"
+                        href="https://wa.me/?text={{ urlencode($announcement->title . ' - Pengumuman Desa Manyar: ' . route('public.announcements.show', $announcement->slug)) }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Bagikan pengumuman melalui WhatsApp"
+                    >
+
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="1.8"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
+                            <path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5Z"/>
+                            <path d="M9 9a5 5 0 0 0 6 6"/>
+
+                        </svg>
+
+                        <span>WhatsApp</span>
+
+                    </a>
+
+                </div>
+
+
+                {{-- KEMBALI --}}
                 <a
                     href="{{ route('public.announcements.index') }}"
                     class="back-link"
                 >
+
                     <span>←</span>
+
                     Kembali ke Daftar Pengumuman
+
                 </a>
 
+
             </article>
+
 
             {{-- PENGUMUMAN LAINNYA --}}
             <aside class="detail-sidebar">
 
                 <div class="sidebar-heading">
+
                     <div class="sidebar-icon">▤</div>
+
                     <h3>Pengumuman Lainnya</h3>
+
                 </div>
+
 
                 @forelse ($relatedAnnouncements as $related)
 
@@ -448,10 +584,55 @@
 
             </aside>
 
+
         </div>
 
     </div>
 
 </section>
+
+
+{{-- JAVASCRIPT SALIN LINK --}}
+<script>
+    async function copyDetailAnnouncementLink(button) {
+
+        const url = button.dataset.url;
+        const text = button.querySelector('span');
+
+        try {
+
+            await navigator.clipboard.writeText(url);
+
+        } catch (error) {
+
+            // FALLBACK UNTUK BROWSER YANG TIDAK MENDUKUNG CLIPBOARD API
+
+            const textarea = document.createElement('textarea');
+
+            textarea.value = url;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+
+            document.body.appendChild(textarea);
+
+            textarea.select();
+
+            const success = document.execCommand('copy');
+
+            textarea.remove();
+
+            if (!success) {
+                alert('Gagal menyalin link. Silakan salin secara manual.');
+                return;
+            }
+        }
+
+        text.textContent = 'Tersalin!';
+
+        setTimeout(() => {
+            text.textContent = 'Salin Link';
+        }, 1800);
+    }
+</script>
 
 @endsection

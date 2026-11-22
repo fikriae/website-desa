@@ -259,6 +259,49 @@
         margin-bottom: 7px;
     }
 
+    /* SHARE AGENDA */
+    .detail-share {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 18px;
+        margin-top: 27px;
+        padding-top: 18px;
+        border-top: 1px solid #e8eee8;
+    }
+
+    .detail-share button,
+    .detail-share a {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 0;
+        border: none;
+        background: transparent;
+        color: #718075;
+        font-family: inherit;
+        font-size: 12px;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        transition: .2s ease;
+    }
+
+    .detail-share button:hover,
+    .detail-share a:hover {
+        color: #1e462e;
+    }
+
+    .detail-share .share-whatsapp:hover {
+        color: #168b48;
+    }
+
+    .detail-share svg {
+        width: 17px;
+        height: 17px;
+        flex-shrink: 0;
+    }
+
     /* BACK BUTTON */
     .back-button {
         display: inline-flex;
@@ -341,6 +384,15 @@
         .detail-content {
             font-size: 13px;
             line-height: 1.85;
+        }
+
+        .detail-share {
+            gap: 15px;
+        }
+
+        .detail-share button,
+        .detail-share a {
+            font-size: 11px;
         }
 
         .back-button {
@@ -450,6 +502,42 @@
             {!! nl2br(e($agenda->description ?? 'Belum ada deskripsi kegiatan.')) !!}
         </div>
 
+        {{-- SHARE AGENDA --}}
+        <div class="detail-share">
+
+            {{-- SALIN LINK --}}
+            <button
+                type="button"
+                onclick="copyDetailAgendaLink(this)"
+                data-url="{{ route('public.agendas.show', $agenda->slug) }}"
+            >
+                <svg viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="8" y="8" width="13" height="13" rx="2"></rect>
+                    <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"></path>
+                </svg>
+                <span>Salin Link</span>
+            </button>
+
+            {{-- BAGIKAN WHATSAPP --}}
+            <a
+                class="share-whatsapp"
+                href="https://wa.me/?text={{ urlencode($agenda->title . ' - Agenda Kegiatan Desa Manyar: ' . route('public.agendas.show', $agenda->slug)) }}"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <svg viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5Z"></path>
+                    <path d="M9 9.5c.5 2 2 3.5 4 4l1.2-1.2 2 1c-.2 1.2-1.2 2-2.5 2-3.5-.5-6.5-3.5-7-7-.1-1.3.8-2.3 2-2.5l1 2L9 9.5Z"></path>
+                </svg>
+                <span>WhatsApp</span>
+            </a>
+
+        </div>
+
         <a
             href="{{ route('public.agendas.index') }}"
             class="back-button"
@@ -461,5 +549,56 @@
     </article>
 
 </div>
+
+{{-- JAVASCRIPT SALIN LINK --}}
+<script>
+    function copyDetailAgendaLink(button) {
+        const url = button.getAttribute('data-url');
+        const label = button.querySelector('span');
+        const originalText = label.textContent;
+
+        function showCopied() {
+            label.textContent = 'Tersalin!';
+
+            setTimeout(() => {
+                label.textContent = originalText;
+            }, 1800);
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(url)
+                .then(showCopied)
+                .catch(() => fallbackCopyAgenda(url, showCopied));
+        } else {
+            fallbackCopyAgenda(url, showCopied);
+        }
+    }
+
+    function fallbackCopyAgenda(text, callback) {
+        const textarea = document.createElement('textarea');
+
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        textarea.style.left = '-9999px';
+
+        document.body.appendChild(textarea);
+        textarea.select();
+
+        try {
+            const success = document.execCommand('copy');
+
+            if (success) {
+                callback();
+            } else {
+                alert('Gagal menyalin link. Silakan salin secara manual.');
+            }
+        } catch (error) {
+            alert('Gagal menyalin link. Silakan salin secara manual.');
+        }
+
+        document.body.removeChild(textarea);
+    }
+</script>
 
 @endsection

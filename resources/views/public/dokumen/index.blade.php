@@ -268,6 +268,7 @@
         font-size: 15px;
     }
 
+    /* DOWNLOAD */
     .service-download {
         display: flex;
         align-items: center;
@@ -296,6 +297,45 @@
     .service-download span {
         font-size: 17px;
         line-height: 1;
+    }
+
+    /* BAGIKAN DOKUMEN */
+    .service-share {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 15px;
+        padding-top: 13px;
+        border-top: 1px solid #edf1ed;
+    }
+
+    .service-share button,
+    .service-share a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0;
+        border: none;
+        background: transparent;
+        color: #718075;
+        font-family: inherit;
+        font-size: 11px;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        transition: color .2s ease;
+    }
+
+    .service-share button:hover,
+    .service-share a:hover {
+        color: #1e462e;
+    }
+
+    .service-share svg {
+        width: 15px;
+        height: 15px;
+        flex-shrink: 0;
     }
 
     /* EMPTY STATE */
@@ -544,6 +584,7 @@
         </p>
     </div>
 
+    {{-- PENCARIAN --}}
     <form
         action="{{ route('public.documents.index') }}"
         method="GET"
@@ -559,6 +600,7 @@
         <button type="submit">Cari Dokumen</button>
     </form>
 
+    {{-- INFORMASI DOKUMEN --}}
     <div class="service-info">
         <h2>Daftar Dokumen</h2>
 
@@ -567,9 +609,15 @@
         </span>
     </div>
 
+    {{-- DAFTAR DOKUMEN --}}
     <div class="service-grid">
 
         @forelse($documents as $document)
+
+            @php
+                $downloadUrl = route('public.documents.download', $document);
+                $shareText = $document->title . ' - Layanan Surat Desa Manyar: ' . $downloadUrl;
+            @endphp
 
             <article class="service-card">
 
@@ -587,13 +635,55 @@
                     Format: {{ $document->file_type ?: 'Dokumen' }}
                 </div>
 
+                {{-- UNDUH DOKUMEN --}}
                 <a
-                    href="{{ route('public.documents.download', $document) }}"
+                    href="{{ $downloadUrl }}"
                     class="service-download"
                 >
                     <span>↓</span>
                     Unduh Dokumen
                 </a>
+
+                {{-- BAGIKAN DOKUMEN --}}
+                <div class="service-share">
+
+                    {{-- SALIN LINK --}}
+                    <button
+                        type="button"
+                        onclick="copyDocumentLink(this)"
+                        data-url="{{ $downloadUrl }}"
+                        title="Salin link dokumen"
+                    >
+                        <svg viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <rect x="8" y="8" width="13" height="13" rx="2"></rect>
+                            <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"></path>
+                        </svg>
+                        <span>Salin Link</span>
+                    </button>
+
+                    {{-- WHATSAPP --}}
+                    <a
+                        href="https://wa.me/?text={{ urlencode($shareText) }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="Bagikan melalui WhatsApp"
+                    >
+                        <svg viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20l1.1-5.3A8.4 8.4 0 1 1 21 11.5Z"></path>
+                            <path d="M8.5 9.5c.5 2 2 3.5 4 4l1-1 2 1c-.3 1-1 1.5-2 1.5-3 0-6.5-3.5-6.5-6.5 0-1 .5-1.7 1.5-2l1 2-1 1Z"></path>
+                        </svg>
+                        <span>WhatsApp</span>
+                    </a>
+
+                </div>
 
             </article>
 
@@ -618,12 +708,14 @@
 
     </div>
 
+    {{-- PAGINATION --}}
     @if($documents->hasPages())
         <div class="service-pagination">
-            {{ $documents->links() }}
+            {{ $documents->appends(request()->query())->links() }}
         </div>
     @endif
 
+    {{-- BANTUAN --}}
     <div class="service-help">
         <div class="service-help-content">
             <h3>Butuh Informasi Lebih Lanjut?</h3>
@@ -641,3 +733,55 @@
 
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    // MENYALIN LINK DOKUMEN
+    function copyDocumentLink(button) {
+        const url = button.dataset.url;
+        const label = button.querySelector('span');
+        const originalLabel = label.textContent;
+
+        function showCopied() {
+            label.textContent = 'Tersalin!';
+
+            setTimeout(() => {
+                label.textContent = originalLabel;
+            }, 1800);
+        }
+
+        function fallbackCopyDocument() {
+            const textarea = document.createElement('textarea');
+
+            textarea.value = url;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+
+            document.body.appendChild(textarea);
+            textarea.select();
+
+            try {
+                const success = document.execCommand('copy');
+
+                if (success) {
+                    showCopied();
+                } else {
+                    alert('Gagal menyalin link dokumen.');
+                }
+            } catch (error) {
+                alert('Gagal menyalin link dokumen.');
+            }
+
+            document.body.removeChild(textarea);
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(url)
+                .then(showCopied)
+                .catch(fallbackCopyDocument);
+        } else {
+            fallbackCopyDocument();
+        }
+    }
+</script>
+@endpush

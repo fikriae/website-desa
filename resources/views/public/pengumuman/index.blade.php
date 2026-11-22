@@ -256,6 +256,49 @@
         color: #8a7825;
     }
 
+    /* SHARE PENGUMUMAN */
+
+    .announcement-share {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-top: 17px;
+        padding-top: 13px;
+        border-top: 1px solid #edf1ed;
+    }
+
+    .announcement-share a,
+    .announcement-share button {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: #87928a;
+        font-family: inherit;
+        font-size: 11px;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: color .25s ease;
+    }
+
+    .announcement-share a:hover,
+    .announcement-share button:hover {
+        color: #1e462e;
+    }
+
+    .announcement-share .whatsapp-share:hover {
+        color: #16a34a;
+    }
+
+    .announcement-share svg {
+        width: 15px;
+        height: 15px;
+        flex-shrink: 0;
+    }
+
     /* KOSONG */
 
     .empty-state {
@@ -419,6 +462,7 @@
 </style>
 @endpush
 
+
 @section('content')
 
 <section class="announcement-page">
@@ -427,7 +471,10 @@
 
         {{-- JUDUL HALAMAN --}}
         <div class="announcement-heading">
-            <span class="announcement-label">INFORMASI DESA MANYAR</span>
+
+            <span class="announcement-label">
+                INFORMASI DESA MANYAR
+            </span>
 
             <h1>
                 Pengumuman Desa Manyar
@@ -438,7 +485,9 @@
                 Informasi dan pemberitahuan resmi dari Pemerintah Desa
                 Manyar untuk seluruh masyarakat.
             </p>
+
         </div>
+
 
         {{-- PENCARIAN --}}
         <form action="{{ route('public.announcements.index') }}"
@@ -453,7 +502,9 @@
             >
 
             <button type="submit">Cari Pengumuman</button>
+
         </form>
+
 
         {{-- DAFTAR PENGUMUMAN --}}
         <div class="announcement-grid">
@@ -465,19 +516,24 @@
                     <div class="announcement-image-wrap">
 
                         @if ($announcement->featured_image)
+
                             <img
                                 src="{{ asset('storage/' . $announcement->featured_image) }}"
                                 alt="{{ $announcement->title }}"
                                 class="announcement-image"
                                 loading="lazy"
                             >
+
                         @else
+
                             <div class="announcement-placeholder">
                                 ▣
                             </div>
+
                         @endif
 
                     </div>
+
 
                     <div class="announcement-content">
 
@@ -485,20 +541,76 @@
                             {{ $announcement->published_at->translatedFormat('d F Y') }}
                         </div>
 
+
                         <h2>
                             {{ $announcement->title }}
                         </h2>
+
 
                         <p>
                             {{ $announcement->excerpt ?: \Illuminate\Support\Str::limit(strip_tags($announcement->content), 120) }}
                         </p>
 
+
+                        {{-- BACA SELENGKAPNYA --}}
                         <a
                             href="{{ route('public.announcements.show', $announcement->slug) }}"
                             class="read-more"
                         >
                             Baca Selengkapnya <span>↗</span>
                         </a>
+
+
+                        {{-- TOMBOL BAGIKAN --}}
+                        <div class="announcement-share">
+
+                            {{-- SALIN LINK --}}
+                            <button
+                                type="button"
+                                onclick="copyAnnouncementLink(this)"
+                                data-url="{{ route('public.announcements.show', $announcement->slug) }}"
+                                aria-label="Salin link pengumuman"
+                            >
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.8"
+                                     stroke-linecap="round"
+                                     stroke-linejoin="round">
+
+                                    <rect x="8" y="8" width="13" height="13" rx="2"/>
+                                    <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+
+                                </svg>
+
+                                <span>Salin Link</span>
+                            </button>
+
+
+                            {{-- WHATSAPP --}}
+                            <a
+                                class="whatsapp-share"
+                                href="https://wa.me/?text={{ urlencode($announcement->title . ' - Pengumuman Desa Manyar: ' . route('public.announcements.show', $announcement->slug)) }}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Bagikan pengumuman melalui WhatsApp"
+                            >
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.8"
+                                     stroke-linecap="round"
+                                     stroke-linejoin="round">
+
+                                    <path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5Z"/>
+                                    <path d="M9 9a5 5 0 0 0 6 6"/>
+
+                                </svg>
+
+                                <span>WhatsApp</span>
+                            </a>
+
+                        </div>
 
                     </div>
 
@@ -526,6 +638,7 @@
 
         </div>
 
+
         {{-- PAGINATION --}}
         <div class="pagination">
             {{ $announcements->links() }}
@@ -534,5 +647,49 @@
     </div>
 
 </section>
+
+
+{{-- JAVASCRIPT SALIN LINK --}}
+<script>
+    async function copyAnnouncementLink(button) {
+
+        const url = button.dataset.url;
+        const text = button.querySelector('span');
+        const originalText = 'Salin Link';
+
+        try {
+
+            await navigator.clipboard.writeText(url);
+
+        } catch (error) {
+
+            // FALLBACK UNTUK BROWSER YANG TIDAK MENDUKUNG CLIPBOARD API
+            const textarea = document.createElement('textarea');
+
+            textarea.value = url;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+
+            document.body.appendChild(textarea);
+
+            textarea.select();
+
+            const success = document.execCommand('copy');
+
+            textarea.remove();
+
+            if (!success) {
+                alert('Gagal menyalin link. Silakan salin secara manual.');
+                return;
+            }
+        }
+
+        text.textContent = 'Tersalin!';
+
+        setTimeout(() => {
+            text.textContent = originalText;
+        }, 1800);
+    }
+</script>
 
 @endsection
